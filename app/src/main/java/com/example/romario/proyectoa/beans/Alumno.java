@@ -4,11 +4,12 @@ import java.io.Serializable;
 
 public class Alumno implements Serializable {
 
-     private int alumnoId;
-     private String nombres;
-     private String apellidoPaterno;
-     private String apellidoMaterno;
-     private String email;
+    private int alumnoId;
+    private String nombres;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
+    private String email;
+    private int estadoId;
 
     public int getAlumnoId() {
         return alumnoId;
@@ -48,6 +49,15 @@ public class Alumno implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    public int getEstadoId() {
+        return estadoId;
+    }
+
+    public void setEstadoId(int estadoId) {
+        this.estadoId = estadoId;
     }
 }
 

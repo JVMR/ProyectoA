@@ -8,5 +8,4 @@ import com.example.romario.proyectoa.dao.GenericDAO;
  */
 public interface AlumnoDAO extends GenericDAO<Alumno, Long>
 {
-
 }

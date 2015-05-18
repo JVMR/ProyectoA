@@ -1,40 +1,21 @@
 package com.example.romario.proyectoa.conexion;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
+
 /**
  * Created by Hernan on 18/05/2015.
  */
-public class DbHelper {
+public class DbHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "damiDb.sqlite";
-    private SQLiteDatabase database;
-
-    public static final String DATABASE_FILE_PATH = "/sdcard/dami";
-
-    private DbHelper databaseHelper;
-    private SQLiteDatabase database2;
-
-    public DbHelper()
-    {
-        File makeFolder = new File("/sdcard/dami");
-        if (!makeFolder.exists())
-            if (!makeFolder.mkdir()) {
-            }
-        try {
-            database = SQLiteDatabase.openOrCreateDatabase(DATABASE_FILE_PATH+ File.separator + DATABASE_NAME, null);
-            onCreate(database);
-        }
-        catch (SQLiteException ex) {
-            onCreate(database);
-        } finally {
-            closeDB();
-        }
+    public DbHelper(Context context) {
+        super(context, "damiDb.sqlite", null, 1);
     }
 
     private String scriptReader()
@@ -65,33 +46,13 @@ public class DbHelper {
         return texto;
     }
 
-    public SQLiteDatabase opendb() {
-        databaseHelper = new DbHelper();
-        database2 = databaseHelper.getWritableDatabase();
-        return database2;
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(scriptReader());
     }
 
-    private void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(scriptReader());
-    }
-/*
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
-    }
-*/
-    public SQLiteDatabase getReadableDatabase() {
-        database = SQLiteDatabase.openDatabase(DATABASE_FILE_PATH+ File.separator + DATABASE_NAME, null,SQLiteDatabase.OPEN_READONLY);
-        return database;
-    }
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-    public SQLiteDatabase getWritableDatabase() {
-        database = SQLiteDatabase.openDatabase(DATABASE_FILE_PATH+ File.separator + DATABASE_NAME, null,SQLiteDatabase.OPEN_READWRITE);
-        return database;
     }
-
-    public void closeDB() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        if (db != null && db.isOpen())
-            db.close();
-    }
-
 }

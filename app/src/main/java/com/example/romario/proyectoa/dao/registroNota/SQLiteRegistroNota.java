@@ -1,7 +1,6 @@
 package com.example.romario.proyectoa.dao.registroNota;
 
-import com.example.romario.proyectoa.beans.Carrera;
-import com.example.romario.proyectoa.dao.registroNota.RegistroNotaDAO;
+import com.example.romario.proyectoa.beans.RegistroNota;
 
 import java.util.ArrayList;
 
@@ -10,27 +9,27 @@ import java.util.ArrayList;
  */
 public class SQLiteRegistroNota implements RegistroNotaDAO {
     @Override
-    public ArrayList<Carrera> listar() {
+    public ArrayList<RegistroNota> listar() {
         return null;
     }
 
     @Override
-    public Carrera buscar(int id) {
+    public RegistroNota buscar(int id) {
         return null;
     }
 
     @Override
-    public int insertar(Carrera obj) {
+    public int insertar(RegistroNota obj) {
         return 0;
     }
 
     @Override
-    public int editar(Carrera obj) {
+    public int editar(RegistroNota obj) {
         return 0;
     }
 
     @Override
-    public int eliminar(Carrera obj) {
+    public int eliminar(RegistroNota obj) {
         return 0;
     }
 }

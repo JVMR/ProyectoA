@@ -9,5 +9,5 @@ import com.example.romario.proyectoa.dao.GenericDAO;
  */
 public interface ProfesorDAO extends GenericDAO<Profesor, Long>
 {
-
-        }
+    public Profesor logear(String username, String password);
+}
