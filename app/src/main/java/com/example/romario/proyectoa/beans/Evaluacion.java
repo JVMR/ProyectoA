@@ -1,0 +1,26 @@
+package com.example.romario.proyectoa.beans;
+
+import java.io.Serializable;
+
+public class Evaluacion implements Serializable {
+     private int evaluacionId;
+     private String descripcion;
+
+    public int getEvaluacionId() {
+        return evaluacionId;
+    }
+
+    public void setEvaluacionId(int evaluacionId) {
+        this.evaluacionId = evaluacionId;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+}
+
+
