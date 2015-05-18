@@ -20,8 +20,6 @@ public class SQLiteAlumnoDAO implements AlumnoDAO {
             //MySQLiteHelper sql = new MySQLiteHelper(,null,null,1);
             //SQLiteDatabase db = sql.getWritableDatabase();
 
-
-
         }
         catch (Exception e){
             e.printStackTrace();
