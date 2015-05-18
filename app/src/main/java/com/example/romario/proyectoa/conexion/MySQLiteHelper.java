@@ -23,7 +23,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         FileReader fr = null;
         BufferedReader br = null;
         String texto=null;
-        try { archivo = new File ("script.sqlite");
+        try { archivo = new File ("script.sql");
             fr = new FileReader (archivo);
             br = new BufferedReader(fr);
             texto="";
