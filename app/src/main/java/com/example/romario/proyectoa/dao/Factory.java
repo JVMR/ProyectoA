@@ -46,6 +46,4 @@ public abstract class Factory {
                 return null;
         }
     }
-
-
 }
