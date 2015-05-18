@@ -1,19 +1,34 @@
 package com.example.romario.proyectoa.dao;
 
 import com.example.romario.proyectoa.dao.alumno.AlumnoDAO;
+import com.example.romario.proyectoa.dao.alumno.SQLiteAlumnoDAO;
 import com.example.romario.proyectoa.dao.alumnoHorario.AlumnoHorarioDAO;
+import com.example.romario.proyectoa.dao.alumnoHorario.SQLiteAlumnoHorarioDAO;
 import com.example.romario.proyectoa.dao.aula.AulaDAO;
+import com.example.romario.proyectoa.dao.aula.SQLiteAula;
 import com.example.romario.proyectoa.dao.calificacion.CalificacionDAO;
+import com.example.romario.proyectoa.dao.calificacion.SQLiteCalificacionDAO;
 import com.example.romario.proyectoa.dao.carerra.CarerraDAO;
+import com.example.romario.proyectoa.dao.carerra.SQLiteCarerraDAO;
 import com.example.romario.proyectoa.dao.curso.CursoDAO;
+import com.example.romario.proyectoa.dao.curso.SQLiteCursoDAO;
 import com.example.romario.proyectoa.dao.cursoEvaluacion.CursoEvaluacionDAO;
 import com.example.romario.proyectoa.dao.dia.DiaDAO;
+import com.example.romario.proyectoa.dao.dia.SQLiteDiaDAO;
 import com.example.romario.proyectoa.dao.estado.EstadoDAO;
+import com.example.romario.proyectoa.dao.estado.SQLiteEstadoDAO;
 import com.example.romario.proyectoa.dao.evaluacion.EvaluacionDAO;
+import com.example.romario.proyectoa.dao.cursoEvaluacion.SQLiteCursoEvaluacionDAO;
+import com.example.romario.proyectoa.dao.evaluacion.SQLiteEvaluacionDAO;
 import com.example.romario.proyectoa.dao.horario.HorarioDAO;
+import com.example.romario.proyectoa.dao.horario.SQLiteHorarioDAO;
 import com.example.romario.proyectoa.dao.profesor.ProfesorDAO;
+import com.example.romario.proyectoa.dao.profesor.SQLiteProfesorDAO;
 import com.example.romario.proyectoa.dao.registroNota.RegistroNotaDAO;
+import com.example.romario.proyectoa.dao.registroNota.SQLiteRegistroNota;
+import com.example.romario.proyectoa.dao.seccion.SQLiteSeccion;
 import com.example.romario.proyectoa.dao.seccion.SeccionDAO;
+import com.example.romario.proyectoa.dao.tipoAula.SQLiteTipoAulaDAO;
 import com.example.romario.proyectoa.dao.tipoAula.TipoAulaDAO;
 
 /**

@@ -1,9 +1,25 @@
 package com.example.romario.proyectoa.dao;
 
+import com.example.romario.proyectoa.dao.alumno.AlumnoDAO;
+import com.example.romario.proyectoa.dao.alumnoHorario.AlumnoHorarioDAO;
+import com.example.romario.proyectoa.dao.aula.AulaDAO;
+import com.example.romario.proyectoa.dao.calificacion.CalificacionDAO;
+import com.example.romario.proyectoa.dao.carerra.CarerraDAO;
+import com.example.romario.proyectoa.dao.curso.CursoDAO;
+import com.example.romario.proyectoa.dao.cursoEvaluacion.CursoEvaluacionDAO;
+import com.example.romario.proyectoa.dao.dia.DiaDAO;
+import com.example.romario.proyectoa.dao.estado.EstadoDAO;
+import com.example.romario.proyectoa.dao.evaluacion.EvaluacionDAO;
+import com.example.romario.proyectoa.dao.horario.HorarioDAO;
+import com.example.romario.proyectoa.dao.profesor.ProfesorDAO;
+import com.example.romario.proyectoa.dao.registroNota.RegistroNotaDAO;
+import com.example.romario.proyectoa.dao.seccion.SeccionDAO;
+import com.example.romario.proyectoa.dao.tipoAula.TipoAulaDAO;
+
 /**
  * Created by Hernan on 17/05/2015.
  */
-public class Factory {
+public abstract class Factory {
     public static final int TIPO_SQLITE = 1;
 
     public abstract AlumnoDAO getAlumnoDAO();
