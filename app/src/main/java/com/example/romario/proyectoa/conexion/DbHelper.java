@@ -71,7 +71,7 @@ public class DbHelper {
         return database2;
     }
 
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    private void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(scriptReader());
     }
 /*

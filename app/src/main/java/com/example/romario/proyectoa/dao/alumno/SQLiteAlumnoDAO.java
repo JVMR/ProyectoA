@@ -3,7 +3,7 @@ package com.example.romario.proyectoa.dao.alumno;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.romario.proyectoa.beans.Alumno;
-import com.example.romario.proyectoa.conexion.MySQLiteHelper;
+import com.example.romario.proyectoa.conexion.DbHelper;
 
 import java.util.ArrayList;
 
@@ -15,14 +15,20 @@ public class SQLiteAlumnoDAO implements AlumnoDAO {
     public ArrayList<Alumno> listar() {
 
         ArrayList<Alumno> alumnos = new ArrayList<>();
-
+        DbHelper dbHelper = null;
         try {
-            //MySQLiteHelper sql = new MySQLiteHelper(,null,null,1);
-            //SQLiteDatabase db = sql.getWritableDatabase();
+            dbHelper = new DbHelper();
+            SQLiteDatabase database=dbHelper.opendb();
+            dbHelper.getReadableDatabase();
+            //dbHelper.
 
         }
         catch (Exception e){
             e.printStackTrace();
+        }
+        finally {
+            if(dbHelper!=null)
+                dbHelper.closeDB();
         }
         return alumnos;
     }
