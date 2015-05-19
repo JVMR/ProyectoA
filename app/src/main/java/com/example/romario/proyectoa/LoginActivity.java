@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -58,19 +60,19 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         String username = edtUsuario.getText().toString();
         String password = edtPassword.getText().toString();
         boolean flag=true;
-        if(username.isEmpty() || username==null)
+        if(username.isEmpty())
         {
             edtUsuario.setError("Usuario inválido");
             flag=false;
         }
 
-        if(password.isEmpty() || password==null)
+        if(password.isEmpty())
         {
             edtPassword.setError("Password inválido");
             flag=false;
         }
 
-        if(!flag)
+        if(flag)
         {
             Factory factory = Factory.getFactory(Factory.TIPO_SQLITE);
             ProfesorDAO profesorDAO = factory.getProfesorDAO(this);
@@ -79,7 +81,23 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             {
                 Intent ir = new Intent(this,MainActivity.class);
                 ir.putExtra("profesor", profesor);
+                startActivity(ir);
+            }
+            else
+            {
+                AlertDialog alerta = new AlertDialog.Builder(this).create();
+                alerta.setTitle("Error");
+                alerta.setMessage("El usuario o el password es incorrecto");
+                alerta.setIcon(R.drawable.error);
+                alerta.setButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        edtPassword.setText("");
+                    }
+                });
+                alerta.show();
             }
         }
+
     }
 }

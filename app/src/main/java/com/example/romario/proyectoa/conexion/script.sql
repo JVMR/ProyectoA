@@ -107,8 +107,6 @@ CREATE TABLE REGISTRO_NOTAS (
   calificacionesId INTEGER NOT NULL REFERENCES CALIFICACIONES(calificacionesId)
 );
 
-------------------------------------------
-------------------------------------------
 insert into ESTADOS (estadoId, descripcion) values
 (1, 'MATRICULA REGULAR'),
 (2, 'RETIRO TEMPORAL'),
@@ -274,3 +272,5 @@ INSERT INTO TIPO_AULA VALUES
 (1,'TEORIA'),
 (3,'PRÁCTICA/TALLER'),
 (2,'LABORATORIO');
+
+

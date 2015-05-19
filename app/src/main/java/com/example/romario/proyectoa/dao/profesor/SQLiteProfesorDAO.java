@@ -51,7 +51,7 @@ public class SQLiteProfesorDAO implements ProfesorDAO {
         try {
             DbHelper helper = new DbHelper(context);
             SQLiteDatabase database = helper.getReadableDatabase();
-            Cursor q = database.rawQuery("SELECT * FROM PROFESOR WHERE username=? AND password=?",new String[]{username,password});
+            Cursor q = database.rawQuery("SELECT * FROM PROFESORES WHERE username=? AND password=?",new String[]{username,password});
 
             if (q.moveToNext())
             {
