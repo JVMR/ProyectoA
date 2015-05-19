@@ -18,7 +18,7 @@
             android:layout_width="221dp"
             android:layout_height="wrap_content"
             android:text="@string/strImportar"
-            android:id="@+id/button"
+            android:id="@+id/btnImportar"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.07"
             android:layout_margin="50dp" />
@@ -27,7 +27,7 @@
             android:layout_width="221dp"
             android:layout_height="wrap_content"
             android:text="@string/strRegistrar"
-            android:id="@+id/button2"
+            android:id="@+id/btnRegistroNotas"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.07"
             android:layout_margin="50dp" />
@@ -36,7 +36,7 @@
             android:layout_width="221dp"
             android:layout_height="wrap_content"
             android:text="@string/strExportar"
-            android:id="@+id/button3"
+            android:id="@+id/btnExportar"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.07"
             android:layout_margin="50dp" />
