@@ -1,17 +1,33 @@
 package com.example.romario.proyectoa;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.romario.proyectoa.beans.Profesor;
 
 
 public class ImportarActivity extends ActionBarActivity {
+
+    Profesor profesor;
+    TextView lblProfesor;
+    ListView lstModalida, lstCiclo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_importar);
+
+        Intent rec = getIntent();
+        profesor = (Profesor)rec.getSerializableExtra("profesor");
+
+        lblProfesor = (TextView)findViewById(R.id.lblProfesorImportar);
+        lblProfesor.setText("Docente: "+profesor.getNombres()+" "+profesor.getApellidoPaterno());
+
     }
 
 
