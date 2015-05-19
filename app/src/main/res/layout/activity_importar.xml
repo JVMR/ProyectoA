@@ -63,7 +63,7 @@
             android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:text="@string/strImportarImportar"
-            android:id="@+id/button4"
+            android:id="@+id/btnImportarImportar"
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>

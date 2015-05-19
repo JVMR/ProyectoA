@@ -22,7 +22,7 @@
 
     <string name="strModalidadImportar">Modalidad</string>
     <string name="strCicloImportar">Ciclo</string>
-    <string name="strImportarImportar">\uf0ed Importar</string>
+    <string name="strImportarImportar">Importar</string>
 
     <string name="strModalidad">Modelidad de Estudio : </string>
     <string name="strPreIngreso">PreIngreso de Notas. </string>

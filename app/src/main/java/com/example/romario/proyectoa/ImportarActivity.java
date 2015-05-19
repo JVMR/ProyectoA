@@ -5,17 +5,26 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.romario.proyectoa.beans.ModalidadEstudio;
 import com.example.romario.proyectoa.beans.Profesor;
+import com.example.romario.proyectoa.dao.Factory;
+import com.example.romario.proyectoa.dao.modalidadEstudio.ModalidadEstudioDAO;
+
+import java.util.ArrayList;
 
 
-public class ImportarActivity extends ActionBarActivity {
+public class ImportarActivity extends ActionBarActivity implements View.OnClickListener{
 
     Profesor profesor;
     TextView lblProfesor;
-    ListView lstModalida, lstCiclo;
+    Spinner spnModalidad, spnCiclo;
+    Button btnImportar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +35,29 @@ public class ImportarActivity extends ActionBarActivity {
         profesor = (Profesor)rec.getSerializableExtra("profesor");
 
         lblProfesor = (TextView)findViewById(R.id.lblProfesorImportar);
-        lblProfesor.setText("Docente: "+profesor.getNombres()+" "+profesor.getApellidoPaterno());
+        lblProfesor.setText("DOCENTE: "+(profesor.getNombres()+" "+profesor.getApellidoPaterno()).toUpperCase());
+
+        spnModalidad=(Spinner)findViewById(R.id.spnModalidadImportar);
+        llenarModalidades();
+        spnCiclo=(Spinner)findViewById(R.id.spnCicloImportar);
+        //llenarCiclos();
+
+
+        //Typeface myCustomFont =Typeface.createFromAsset(getAssets(),"fonts/fontawesome.ttf");
+
+        Button btnImportar = (Button)findViewById(R.id.btnImportarImportar);
+        //btnImportar.setTypeface(myCustomFont);
+        btnImportar.setOnClickListener(this);
+
+    }
+
+    private void llenarModalidades() {
+        Factory factory = Factory.getFactory(Factory.TIPO_SQLITE);
+        ModalidadEstudioDAO modalidadEstudioDAO = factory.getModalidadEstudioDAO(this);
+        ArrayList<ModalidadEstudio> lista = modalidadEstudioDAO.listar();
+
+        ArrayAdapter<ModalidadEstudio> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,lista);
+        spnModalidad.setAdapter(adapter);
 
     }
 
@@ -51,5 +82,13 @@ public class ImportarActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v==btnImportar)
+        {
+
+        }
     }
 }

@@ -7,12 +7,16 @@ import com.example.romario.proyectoa.dao.alumnoHorario.AlumnoHorarioDAO;
 import com.example.romario.proyectoa.dao.aula.AulaDAO;
 import com.example.romario.proyectoa.dao.calificacion.CalificacionDAO;
 import com.example.romario.proyectoa.dao.carerra.CarerraDAO;
+import com.example.romario.proyectoa.dao.cargaDocente.CargaDocenteDAO;
+import com.example.romario.proyectoa.dao.ciclo.CicloDAO;
 import com.example.romario.proyectoa.dao.curso.CursoDAO;
 import com.example.romario.proyectoa.dao.cursoEvaluacion.CursoEvaluacionDAO;
 import com.example.romario.proyectoa.dao.dia.DiaDAO;
 import com.example.romario.proyectoa.dao.estado.EstadoDAO;
 import com.example.romario.proyectoa.dao.evaluacion.EvaluacionDAO;
 import com.example.romario.proyectoa.dao.horario.HorarioDAO;
+import com.example.romario.proyectoa.dao.matricula.MatriculaDAO;
+import com.example.romario.proyectoa.dao.modalidadEstudio.ModalidadEstudioDAO;
 import com.example.romario.proyectoa.dao.profesor.ProfesorDAO;
 import com.example.romario.proyectoa.dao.registroNota.RegistroNotaDAO;
 import com.example.romario.proyectoa.dao.seccion.SeccionDAO;
@@ -39,6 +43,10 @@ public abstract class Factory {
     public abstract RegistroNotaDAO getRegistroNota();
     public abstract SeccionDAO getSeccion();
     public abstract TipoAulaDAO getTipoAulaDAO();
+    public abstract ModalidadEstudioDAO getModalidadEstudioDAO(Context context);
+    public abstract CicloDAO getCicloDAO(Context context);
+    public abstract CargaDocenteDAO getCargaDocenteDAO(Context context);
+    public abstract MatriculaDAO getMatriculaDAO(Context context);
 
     public static Factory getFactory(int tipo) {
         switch (tipo) {

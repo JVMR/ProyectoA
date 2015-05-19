@@ -12,6 +12,10 @@ import com.example.romario.proyectoa.dao.calificacion.CalificacionDAO;
 import com.example.romario.proyectoa.dao.calificacion.SQLiteCalificacionDAO;
 import com.example.romario.proyectoa.dao.carerra.CarerraDAO;
 import com.example.romario.proyectoa.dao.carerra.SQLiteCarerraDAO;
+import com.example.romario.proyectoa.dao.cargaDocente.CargaDocenteDAO;
+import com.example.romario.proyectoa.dao.cargaDocente.SQLiteCargaDocenteDAO;
+import com.example.romario.proyectoa.dao.ciclo.CicloDAO;
+import com.example.romario.proyectoa.dao.ciclo.SQLiteCicloDAO;
 import com.example.romario.proyectoa.dao.curso.CursoDAO;
 import com.example.romario.proyectoa.dao.curso.SQLiteCursoDAO;
 import com.example.romario.proyectoa.dao.cursoEvaluacion.CursoEvaluacionDAO;
@@ -24,6 +28,10 @@ import com.example.romario.proyectoa.dao.cursoEvaluacion.SQLiteCursoEvaluacionDA
 import com.example.romario.proyectoa.dao.evaluacion.SQLiteEvaluacionDAO;
 import com.example.romario.proyectoa.dao.horario.HorarioDAO;
 import com.example.romario.proyectoa.dao.horario.SQLiteHorarioDAO;
+import com.example.romario.proyectoa.dao.m.SQLiteMatriculaDAO;
+import com.example.romario.proyectoa.dao.matricula.MatriculaDAO;
+import com.example.romario.proyectoa.dao.modalidadEstudio.ModalidadEstudioDAO;
+import com.example.romario.proyectoa.dao.modalidadEstudio.SQLiteModalidadEstudioDAO;
 import com.example.romario.proyectoa.dao.profesor.ProfesorDAO;
 import com.example.romario.proyectoa.dao.profesor.SQLiteProfesorDAO;
 import com.example.romario.proyectoa.dao.registroNota.RegistroNotaDAO;
@@ -111,5 +119,25 @@ public class SQLiteFactory extends Factory {
     @Override
     public TipoAulaDAO getTipoAulaDAO() {
         return new SQLiteTipoAulaDAO();
+    }
+
+    @Override
+    public ModalidadEstudioDAO getModalidadEstudioDAO(Context context) {
+        return new SQLiteModalidadEstudioDAO(context);
+    }
+
+    @Override
+    public CicloDAO getCicloDAO(Context context) {
+        return new SQLiteCicloDAO(context);
+    }
+
+    @Override
+    public CargaDocenteDAO getCargaDocenteDAO(Context context) {
+        return new SQLiteCargaDocenteDAO(context);
+    }
+
+    @Override
+    public MatriculaDAO getMatriculaDAO(Context context) {
+        return new SQLiteMatriculaDAO(context);
     }
 }
