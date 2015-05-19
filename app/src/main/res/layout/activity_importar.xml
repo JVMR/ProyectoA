@@ -24,7 +24,8 @@
             android:text="Medium Text"
             android:id="@+id/lblProfesorImportar"
             android:layout_gravity="center_horizontal"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="20dp" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -44,7 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/spnModalidadImportar"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,7 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/spnCicloImportar"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center" />
 
         <Button
             android:layout_width="145dp"
