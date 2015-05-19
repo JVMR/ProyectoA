@@ -79,7 +79,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             Profesor profesor=profesorDAO.logear(username,password);
             if(profesor!=null)
             {
-                Intent ir = new Intent(this,MainActivity.class);
+                Intent ir = new Intent(this,OpcionesActivity.class);
                 ir.putExtra("profesor", profesor);
                 startActivity(ir);
             }

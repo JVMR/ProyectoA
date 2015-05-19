@@ -10,5 +10,6 @@
     <string name="strUsuario">Usuario</string>
     <string name="strPassword">Password</string>
     <string name="strEntrar">Entrar</string>
+    <string name="title_activity_opciones">OpcionesActivity</string>
 
 </resources>
