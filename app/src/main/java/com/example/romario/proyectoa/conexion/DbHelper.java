@@ -15,40 +15,74 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_DATABASE);
+        db.execSQL(CREATE_TABLE_ESTADOS);
+        db.execSQL(CREATE_TABLE_MODALIDADES_ESTUDIOS);
+        db.execSQL(CREATE_TABLE_ALUMNOS);
+        db.execSQL(CREATE_TABLE_PROFESORES);
+        db.execSQL(CREATE_TABLE_CARRERAS);
+        db.execSQL(CREATE_TABLE_CURSOS);
+        db.execSQL(CREATE_TABLE_CARRERAS_CURSOS);
+        db.execSQL(CREATE_TABLE_TIPO_AULA);
+        db.execSQL(CREATE_TABLE_AULAS);
+        db.execSQL(CREATE_TABLE_DIAS);
+        db.execSQL(CREATE_TABLE_SECCIONES);
+        db.execSQL(CREATE_TABLE_HORARIOS);
+        db.execSQL(CREATE_TABLE_ALUMNOS_HORARIOS);
+        db.execSQL(CREATE_TABLE_EVALUACIONES);
+        db.execSQL(CREATE_TABLE_CURSOS_EVALUACIONES);
+        db.execSQL(CREATE_TABLE_CALIFICACIONES);
+        db.execSQL(CREATE_TABLE_REGISTRO_NOTAS);
         db.execSQL(INSERTS);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL(DROP_DATABASE);
+        onCreate(db);
     }
 
-    private static final String DROP_DATABASE="";
+    private static final String DROP_DATABASE="drop table ESTADOS;\n" +
+            "drop table MODALIDADES_ESTUDIOS;\n" +
+            "drop table sqlite_sequence;\n" +
+            "drop table ALUMNOS;\n" +
+            "drop table PROFESORES;\n" +
+            "drop table CARRERAS;\n" +
+            "drop table CURSOS;\n" +
+            "drop table CARRERAS_CURSOS;\n" +
+            "drop table TIPO_AULA;\n" +
+            "drop table AULAS;\n" +
+            "drop table DIAS;\n" +
+            "drop table SECCIONES;\n" +
+            "drop table HORARIOS;\n" +
+            "drop table ALUMNOS_HORARIOS;\n" +
+            "drop table EVALUACIONES;\n" +
+            "drop table CURSOS_EVALUACIONES;\n" +
+            "drop table CALIFICACIONES;\n" +
+            "drop table REGISTRO_NOTAS;";
 
-    private static final String CREATE_DATABASE="PRAGMA FOREIGN_KEYS=ON;\n" +
-            "\n" +
-            "CREATE TABLE ESTADOS (\n" +
+    private static final String CREATE_PRAGMA="PRAGMA FOREIGN_KEYS=ON;";
+
+    private static final String CREATE_TABLE_ESTADOS="CREATE TABLE ESTADOS (\n" +
             "  estadoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  descripcion VARCHAR(45) NULL\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE MODALIDADES_ESTUDIOS(\n" +
+            ");";
+
+    private static final String CREATE_TABLE_MODALIDADES_ESTUDIOS="CREATE TABLE MODALIDADES_ESTUDIOS(\n" +
             "    modalidadEstudioId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "    descripcion VARCHAR(45) NOT NULL UNIQUE,\n" +
             "    abreviatura CHAR(2) NOT NULL UNIQUE\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE ALUMNOS (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_ALUMNOS=CREATE_PRAGMA+" "+"CREATE TABLE ALUMNOS (\n" +
             "  alumnoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  nombres VARCHAR(20) NOT NULL,\n" +
             "  apellidoPaterno VARCHAR(20) NOT NULL,\n" +
             "  apellidoMaterno VARCHAR(20) NOT NULL,\n" +
             "  email VARCHAR(40) NOT NULL,\n" +
             "  estadoId INTEGER NOT NULL REFERENCES ESTADOS(estadoId)\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE PROFESORES (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_PROFESORES="CREATE TABLE PROFESORES (\n" +
             "  profesorId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  nombres VARCHAR(20) NOT NULL,\n" +
             "  apellidoPaterno VARCHAR(20) NOT NULL,\n" +
@@ -56,48 +90,48 @@ public class DbHelper extends SQLiteOpenHelper {
             "  email VARCHAR(40) NOT NULL UNIQUE,\n" +
             "  username VARCHAR(15) NOT NULL UNIQUE,\n" +
             "  password VARCHAR(15) NOT NULL\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE CARRERAS (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_CARRERAS="CREATE TABLE CARRERAS (\n" +
             "  carreraId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  descripcion VARCHAR(45) NOT NULL UNIQUE\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE CURSOS (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_CURSOS=CREATE_PRAGMA+" "+"CREATE TABLE CURSOS (\n" +
             "  cursoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  codigo CHAR(4) NOT NULL,\n" +
             "  descripcion VARCHAR(45) NOT NULL UNIQUE,\n" +
             "  modalidadEstudioId INTEGER NOT NULL REFERENCES MODALIDADES_ESTUDIOS(modalidadEstudioId)\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE CARRERAS_CURSOS (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_CARRERAS_CURSOS=CREATE_PRAGMA+" "+"CREATE TABLE CARRERAS_CURSOS (\n" +
             "  carreraCursoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  carreraId INTEGER NOT NULL REFERENCES CARRERAS(carreraId),\n" +
             "  cursoId INTEGER NOT NULL  REFERENCES CURSOS(cursoId),\n" +
             "  creditos INTEGER NOT NULL\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE  TIPO_AULA (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_TIPO_AULA="CREATE TABLE  TIPO_AULA (\n" +
             "  tipoAulaId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  descripcion VARCHAR(20) NULL\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE AULAS (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_AULAS=CREATE_PRAGMA+" "+"CREATE TABLE AULAS (\n" +
             "  aulaId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  tipoAulaId INTEGER NOT NULL REFERENCES TIPO_AULA(tipoAulaId)\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE DIAS (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_DIAS="CREATE TABLE DIAS (\n" +
             "  diaId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  descripcion VARCHAR(15) NULL\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE SECCIONES (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_SECCIONES="CREATE TABLE SECCIONES (\n" +
             "  seccionId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  descripcion CHAR(4) NULL\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE HORARIOS (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_HORARIOS=CREATE_PRAGMA+" "+"CREATE TABLE HORARIOS (\n" +
             "  horarioId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  cursoId INTEGER NOT NULL REFERENCES CURSOS(cursoId),\n" +
             "  profesorId INTEGER NOT NULL REFERENCES PROFESORES(profesorId),\n" +
@@ -107,52 +141,51 @@ public class DbHelper extends SQLiteOpenHelper {
             "  diaId INTEGER NOT NULL REFERENCES DIAS(diaId),\n" +
             "  seccionId INTEGER NOT NULL REFERENCES SECCIONES(seccionId),\n" +
             "  grupo CHAR(2) NOT NULL\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE ALUMNOS_HORARIOS (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_ALUMNOS_HORARIOS=CREATE_PRAGMA+" "+"CREATE TABLE ALUMNOS_HORARIOS (\n" +
             "  alumnoHorarioId INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  alumnoId INTEGER NOT NULL REFERENCES ALUMNOS(alumnoId),\n" +
             "  horarioId INTEGER NOT NULL REFERENCES HORARIOS(horarioId),\n" +
             "  estadoId INTEGER NOT NULL REFERENCES ESTADOS(estadoId)\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE EVALUACIONES (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_EVALUACIONES="CREATE TABLE EVALUACIONES (\n" +
             "  evaluacionId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  descripcion VARCHAR(45) NOT NULL\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE CURSOS_EVALUACIONES (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_CURSOS_EVALUACIONES=CREATE_PRAGMA+" "+"CREATE TABLE CURSOS_EVALUACIONES (\n" +
             "  cursoEvaluacionId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  cursoId INTEGER NOT NULL REFERENCES CURSOS(cursoId),\n" +
             "  evaluacionesId INTEGER NOT NULL REFERENCES EVALUACIONES(evaluacionId),\n" +
             "  porcentaje INTEGER NULL\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE  CALIFICACIONES (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_CALIFICACIONES="CREATE TABLE CALIFICACIONES (\n" +
             "  calificacionId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  descripcion VARCHAR(10) NULL,\n" +
             "  nota INTEGER NOT NULL\n" +
-            ");\n" +
-            "\n" +
-            "CREATE TABLE REGISTRO_NOTAS (\n" +
+            ");";
+
+    private static final String CREATE_TABLE_REGISTRO_NOTAS=CREATE_PRAGMA+" "+"CREATE TABLE REGISTRO_NOTAS (\n" +
             "  registroNotaId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  alumnoId INTEGER NOT NULL REFERENCES ALUMNOS(alumnoId),\n" +
             "  cursoId INTEGER NOT NULL REFERENCES CURSOS(cursoId),\n" +
             "  evaluacionId INTEGER NOT NULL REFERENCES EVALUACIONES(evaluacionId),\n" +
             "  calificacionesId INTEGER NOT NULL REFERENCES CALIFICACIONES(calificacionesId)\n" +
-            ");\n";
+            ");";
 
     private static final String INSERTS="insert into ESTADOS values\n" +
             "(1, 'MATRICULA REGULAR'),\n" +
             "(2, 'RETIRO TEMPORAL'),\n" +
             "(3, 'DESAPROBADO POR INASISTENCIA');\n" +
-            "\n" +
             "insert into MODALIDADES_ESTUDIOS values\n" +
             "(1, 'CARRERAS TÉCNICAS','AC'),\n" +
             "(2, 'PROGRAMA DE ADELANTOS','AD'),\n" +
             "(3, 'DIPLOMADOS CIBERTEC','DC');\n" +
-            "\n" +
-            "INSERT INTO PROFESORES VALUES(1,'Chris','Reyes','Powell','pcpowell0@cibertec.edu.pe','cpowell0','abc123'),\n" +
+            "insert into PROFESORES VALUES\n" +
+            "(1,'Chris','Reyes','Powell','pcpowell0@cibertec.edu.pe','cpowell','123'),\n" +
             "(2,'Maria','Boyd','Berry','pmberry1@cibertec.edu.pe','mberry1','FzsZ54d'),\n" +
             "(3,'Jimmy','Roberts','Cruz','pjcruz2@cibertec.edu.pe','jcruz2','XKeeVx'),\n" +
             "(4,'Bruce','Porter','Mills','pbmills3@cibertec.edu.pe','bmills3','agiU4VP'),\n" +
@@ -172,7 +205,6 @@ public class DbHelper extends SQLiteOpenHelper {
             "(18,'Ashley','Robertson','Freeman','pafreemanh@cibertec.edu.pe','afreemanh','NNrswp'),\n" +
             "(19,'Nancy','Bowman','Rodriguez','pnrodriguezi@cibertec.edu.pe','nrodriguezi','d7cBtbC'),\n" +
             "(20,'Catherine','Owens','Fisher','pcfisherj@cibertec.edu.pe','cfisherj','LrARaoB7l7');\n" +
-            "\n" +
             "insert into ALUMNOS values\n" +
             "(1, 'Phyllis', 'Gray', 'Webb', 'pwebb0@webmd.com',1),\n" +
             "(2, 'Kimberly', 'Reed', 'Coleman', 'kcoleman1@zdnet.com',1),\n" +
@@ -274,15 +306,14 @@ public class DbHelper extends SQLiteOpenHelper {
             "(98, 'Sarah', 'Rose', 'Larson', 'slarson2p@google.fr',1),\n" +
             "(99, 'Laura', 'Stanley', 'Alvarez', 'lalvarez2q@telegraph.co.uk',1),\n" +
             "(100, 'Louise', 'Graham', 'Medina', 'lmedina2r@yahoo.com',1);\n" +
-            "\n" +
-            "insert into DIAS values (1, 'Lunes'),\n" +
+            "insert into DIAS values\n" +
+            "(1, 'Lunes'),\n" +
             "(2, 'Martes'),\n" +
             "(3, 'Miércoles'),\n" +
             "(4, 'Jueves'),\n" +
             "(5, 'Viernes'),\n" +
             "(6, 'Sábado'),\n" +
             "(7, 'Domingo');\n" +
-            "\n" +
             "insert into CURSOS values\n" +
             "(1,'0267','Base de Datos Avanzado ii',1),\n" +
             "(2,'0557','Desarrollo de Aplicaciones Móviles i',1),\n" +
@@ -292,7 +323,6 @@ public class DbHelper extends SQLiteOpenHelper {
             "(6,'0720','Organización y Constitución de Empresas',1),\n" +
             "(7,'0779','Proyecto de Investigación',1),\n" +
             "(8,'1369','Ética Profesional',1);\n" +
-            "\n" +
             "insert into CARRERAS values\n" +
             "(1, 'ADMINISTRACIÓN BANCARIA TR'),\n" +
             "(2, 'ADMINISTRACIÓN DE NEGOCIOS INTERNACIONALES TR'),\n" +
@@ -307,8 +337,7 @@ public class DbHelper extends SQLiteOpenHelper {
             "(11,'INDUSTRIAL Y SISTEMAS TR'),\n" +
             "(12,'MARKETING TR'),\n" +
             "(13,'REDES Y COMUNICACIONES TR');\n" +
-            "\n" +
-            "INSERT INTO TIPO_AULA VALUES\n" +
+            "insert into TIPO_AULA VALUES\n" +
             "(1,'TEORIA'),\n" +
             "(3,'PRÁCTICA/TALLER'),\n" +
             "(2,'LABORATORIO');";

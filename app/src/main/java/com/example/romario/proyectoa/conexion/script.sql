@@ -1,16 +1,13 @@
 PRAGMA FOREIGN_KEYS=ON;
-
 CREATE TABLE ESTADOS (
   estadoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   descripcion VARCHAR(45) NULL
 );
-
 CREATE TABLE MODALIDADES_ESTUDIOS(
     modalidadEstudioId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     descripcion VARCHAR(45) NOT NULL UNIQUE,
     abreviatura CHAR(2) NOT NULL UNIQUE
 );
-
 CREATE TABLE ALUMNOS (
   alumnoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   nombres VARCHAR(20) NOT NULL,
@@ -19,7 +16,6 @@ CREATE TABLE ALUMNOS (
   email VARCHAR(40) NOT NULL,
   estadoId INTEGER NOT NULL REFERENCES ESTADOS(estadoId)
 );
-
 CREATE TABLE PROFESORES (
   profesorId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   nombres VARCHAR(20) NOT NULL,
@@ -29,46 +25,38 @@ CREATE TABLE PROFESORES (
   username VARCHAR(15) NOT NULL UNIQUE,
   password VARCHAR(15) NOT NULL
 );
-
 CREATE TABLE CARRERAS (
   carreraId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   descripcion VARCHAR(45) NOT NULL UNIQUE
 );
-
 CREATE TABLE CURSOS (
   cursoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   codigo CHAR(4) NOT NULL,
   descripcion VARCHAR(45) NOT NULL UNIQUE,
   modalidadEstudioId INTEGER NOT NULL REFERENCES MODALIDADES_ESTUDIOS(modalidadEstudioId)
 );
-
 CREATE TABLE CARRERAS_CURSOS (
   carreraCursoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   carreraId INTEGER NOT NULL REFERENCES CARRERAS(carreraId),
   cursoId INTEGER NOT NULL  REFERENCES CURSOS(cursoId),
   creditos INTEGER NOT NULL
 );
-
 CREATE TABLE  TIPO_AULA (
   tipoAulaId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   descripcion VARCHAR(20) NULL
 );
-
 CREATE TABLE AULAS (
   aulaId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   tipoAulaId INTEGER NOT NULL REFERENCES TIPO_AULA(tipoAulaId)
 );
-
 CREATE TABLE DIAS (
   diaId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   descripcion VARCHAR(15) NULL
 );
-
 CREATE TABLE SECCIONES (
   seccionId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   descripcion CHAR(4) NULL
 );
-
 CREATE TABLE HORARIOS (
   horarioId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   cursoId INTEGER NOT NULL REFERENCES CURSOS(cursoId),
@@ -80,32 +68,27 @@ CREATE TABLE HORARIOS (
   seccionId INTEGER NOT NULL REFERENCES SECCIONES(seccionId),
   grupo CHAR(2) NOT NULL
 );
-
 CREATE TABLE ALUMNOS_HORARIOS (
   alumnoHorarioId INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
   alumnoId INTEGER NOT NULL REFERENCES ALUMNOS(alumnoId),
   horarioId INTEGER NOT NULL REFERENCES HORARIOS(horarioId),
   estadoId INTEGER NOT NULL REFERENCES ESTADOS(estadoId)
 );
-
 CREATE TABLE EVALUACIONES (
   evaluacionId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   descripcion VARCHAR(45) NOT NULL
 );
-
 CREATE TABLE CURSOS_EVALUACIONES (
   cursoEvaluacionId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   cursoId INTEGER NOT NULL REFERENCES CURSOS(cursoId),
   evaluacionesId INTEGER NOT NULL REFERENCES EVALUACIONES(evaluacionId),
   porcentaje INTEGER NULL
 );
-
 CREATE TABLE  CALIFICACIONES (
   calificacionId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   descripcion VARCHAR(10) NULL,
   nota INTEGER NOT NULL
 );
-
 CREATE TABLE REGISTRO_NOTAS (
   registroNotaId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   alumnoId INTEGER NOT NULL REFERENCES ALUMNOS(alumnoId),
@@ -113,18 +96,16 @@ CREATE TABLE REGISTRO_NOTAS (
   evaluacionId INTEGER NOT NULL REFERENCES EVALUACIONES(evaluacionId),
   calificacionesId INTEGER NOT NULL REFERENCES CALIFICACIONES(calificacionesId)
 );
-
 insert into ESTADOS values
 (1, 'MATRICULA REGULAR'),
 (2, 'RETIRO TEMPORAL'),
 (3, 'DESAPROBADO POR INASISTENCIA');
-
 insert into MODALIDADES_ESTUDIOS values
 (1, 'CARRERAS TÉCNICAS','AC'),
 (2, 'PROGRAMA DE ADELANTOS','AD'),
 (3, 'DIPLOMADOS CIBERTEC','DC');
-
-INSERT INTO PROFESORES VALUES(1,'Chris','Reyes','Powell','pcpowell0@cibertec.edu.pe','cpowell0','abc123'),
+INSERT INTO PROFESORES VALUES
+(1,'Chris','Reyes','Powell','pcpowell0@cibertec.edu.pe','cpowell0','abc123'),
 (2,'Maria','Boyd','Berry','pmberry1@cibertec.edu.pe','mberry1','FzsZ54d'),
 (3,'Jimmy','Roberts','Cruz','pjcruz2@cibertec.edu.pe','jcruz2','XKeeVx'),
 (4,'Bruce','Porter','Mills','pbmills3@cibertec.edu.pe','bmills3','agiU4VP'),
@@ -144,7 +125,6 @@ INSERT INTO PROFESORES VALUES(1,'Chris','Reyes','Powell','pcpowell0@cibertec.edu
 (18,'Ashley','Robertson','Freeman','pafreemanh@cibertec.edu.pe','afreemanh','NNrswp'),
 (19,'Nancy','Bowman','Rodriguez','pnrodriguezi@cibertec.edu.pe','nrodriguezi','d7cBtbC'),
 (20,'Catherine','Owens','Fisher','pcfisherj@cibertec.edu.pe','cfisherj','LrARaoB7l7');
-
 insert into ALUMNOS values
 (1, 'Phyllis', 'Gray', 'Webb', 'pwebb0@webmd.com',1),
 (2, 'Kimberly', 'Reed', 'Coleman', 'kcoleman1@zdnet.com',1),
@@ -246,15 +226,14 @@ insert into ALUMNOS values
 (98, 'Sarah', 'Rose', 'Larson', 'slarson2p@google.fr',1),
 (99, 'Laura', 'Stanley', 'Alvarez', 'lalvarez2q@telegraph.co.uk',1),
 (100, 'Louise', 'Graham', 'Medina', 'lmedina2r@yahoo.com',1);
-
-insert into DIAS values (1, 'Lunes'),
+insert into DIAS values
+(1, 'Lunes'),
 (2, 'Martes'),
 (3, 'Miércoles'),
 (4, 'Jueves'),
 (5, 'Viernes'),
 (6, 'Sábado'),
 (7, 'Domingo');
-
 insert into CURSOS values
 (1,'0267','Base de Datos Avanzado ii',1),
 (2,'0557','Desarrollo de Aplicaciones Móviles i',1),
@@ -264,7 +243,6 @@ insert into CURSOS values
 (6,'0720','Organización y Constitución de Empresas',1),
 (7,'0779','Proyecto de Investigación',1),
 (8,'1369','Ética Profesional',1);
-
 insert into CARRERAS values
 (1, 'ADMINISTRACIÓN BANCARIA TR'),
 (2, 'ADMINISTRACIÓN DE NEGOCIOS INTERNACIONALES TR'),
@@ -279,10 +257,7 @@ insert into CARRERAS values
 (11,'INDUSTRIAL Y SISTEMAS TR'),
 (12,'MARKETING TR'),
 (13,'REDES Y COMUNICACIONES TR');
-
 INSERT INTO TIPO_AULA VALUES
 (1,'TEORIA'),
 (3,'PRÁCTICA/TALLER'),
 (2,'LABORATORIO');
-
-
