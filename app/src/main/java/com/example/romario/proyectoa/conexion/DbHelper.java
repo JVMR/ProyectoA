@@ -15,6 +15,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(CREATE_TABLE_ESTADOS);
         db.execSQL(CREATE_TABLE_MODALIDADES_ESTUDIOS);
         db.execSQL(CREATE_TABLE_ALUMNOS);
@@ -32,13 +33,21 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_CURSOS_EVALUACIONES);
         db.execSQL(CREATE_TABLE_CALIFICACIONES);
         db.execSQL(CREATE_TABLE_REGISTRO_NOTAS);
-        db.execSQL(INSERTS);
+
+        db.execSQL(INSERTS_ESTADOS);
+        db.execSQL(INSERTS_MODALIDADES_ESTUDIOS);
+        db.execSQL(INSERTS_ALUMNOS);
+        db.execSQL(INSERTS_PROFESORES);
+        db.execSQL(INSERTS_DIAS);
+        db.execSQL(INSERTS_CURSOS);
+        db.execSQL(INSERTS_CARRERAS);
+        db.execSQL(INSERTS_TIPO_AULA);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(DROP_DATABASE);
-        onCreate(db);
+        //db.execSQL(DROP_DATABASE);
+        //onCreate(db);
     }
 
     private static final String DROP_DATABASE="drop table ESTADOS;\n" +
@@ -60,7 +69,7 @@ public class DbHelper extends SQLiteOpenHelper {
             "drop table CALIFICACIONES;\n" +
             "drop table REGISTRO_NOTAS;";
 
-    private static final String CREATE_PRAGMA="PRAGMA FOREIGN_KEYS=ON;";
+    private static final String CREATE_PRAGMA="";
 
     private static final String CREATE_TABLE_ESTADOS="CREATE TABLE ESTADOS (\n" +
             "  estadoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
@@ -176,15 +185,18 @@ public class DbHelper extends SQLiteOpenHelper {
             "  calificacionesId INTEGER NOT NULL REFERENCES CALIFICACIONES(calificacionesId)\n" +
             ");";
 
-    private static final String INSERTS="insert into ESTADOS values\n" +
+
+    private static final String INSERTS_ESTADOS="insert into ESTADOS values\n" +
             "(1, 'MATRICULA REGULAR'),\n" +
             "(2, 'RETIRO TEMPORAL'),\n" +
-            "(3, 'DESAPROBADO POR INASISTENCIA');\n" +
-            "insert into MODALIDADES_ESTUDIOS values\n" +
+            "(3, 'DESAPROBADO POR INASISTENCIA');";
+
+    private static final String INSERTS_MODALIDADES_ESTUDIOS="insert into MODALIDADES_ESTUDIOS values\n" +
             "(1, 'CARRERAS TÉCNICAS','AC'),\n" +
             "(2, 'PROGRAMA DE ADELANTOS','AD'),\n" +
-            "(3, 'DIPLOMADOS CIBERTEC','DC');\n" +
-            "insert into PROFESORES VALUES\n" +
+            "(3, 'DIPLOMADOS CIBERTEC','DC');";
+
+    private static final String INSERTS_PROFESORES="INSERT INTO PROFESORES VALUES\n" +
             "(1,'Chris','Reyes','Powell','pcpowell0@cibertec.edu.pe','cpowell','123'),\n" +
             "(2,'Maria','Boyd','Berry','pmberry1@cibertec.edu.pe','mberry1','FzsZ54d'),\n" +
             "(3,'Jimmy','Roberts','Cruz','pjcruz2@cibertec.edu.pe','jcruz2','XKeeVx'),\n" +
@@ -204,8 +216,9 @@ public class DbHelper extends SQLiteOpenHelper {
             "(17,'Evelyn','Ferguson','Pierce','pepierceg@cibertec.edu.pe','epierceg','agzmHNYu'),\n" +
             "(18,'Ashley','Robertson','Freeman','pafreemanh@cibertec.edu.pe','afreemanh','NNrswp'),\n" +
             "(19,'Nancy','Bowman','Rodriguez','pnrodriguezi@cibertec.edu.pe','nrodriguezi','d7cBtbC'),\n" +
-            "(20,'Catherine','Owens','Fisher','pcfisherj@cibertec.edu.pe','cfisherj','LrARaoB7l7');\n" +
-            "insert into ALUMNOS values\n" +
+            "(20,'Catherine','Owens','Fisher','pcfisherj@cibertec.edu.pe','cfisherj','LrARaoB7l7');";
+
+    private static final String INSERTS_ALUMNOS="insert into ALUMNOS values\n" +
             "(1, 'Phyllis', 'Gray', 'Webb', 'pwebb0@webmd.com',1),\n" +
             "(2, 'Kimberly', 'Reed', 'Coleman', 'kcoleman1@zdnet.com',1),\n" +
             "(3, 'Virginia', 'George', 'Pierce', 'vpierce2@buzzfeed.com',1),\n" +
@@ -305,16 +318,18 @@ public class DbHelper extends SQLiteOpenHelper {
             "(97, 'Robin', 'Torres', 'Dean', 'rdean2o@shop-pro.jp',1),\n" +
             "(98, 'Sarah', 'Rose', 'Larson', 'slarson2p@google.fr',1),\n" +
             "(99, 'Laura', 'Stanley', 'Alvarez', 'lalvarez2q@telegraph.co.uk',1),\n" +
-            "(100, 'Louise', 'Graham', 'Medina', 'lmedina2r@yahoo.com',1);\n" +
-            "insert into DIAS values\n" +
+            "(100, 'Louise', 'Graham', 'Medina', 'lmedina2r@yahoo.com',1);";
+
+    private static final String INSERTS_DIAS="insert into DIAS values\n" +
             "(1, 'Lunes'),\n" +
             "(2, 'Martes'),\n" +
             "(3, 'Miércoles'),\n" +
             "(4, 'Jueves'),\n" +
             "(5, 'Viernes'),\n" +
             "(6, 'Sábado'),\n" +
-            "(7, 'Domingo');\n" +
-            "insert into CURSOS values\n" +
+            "(7, 'Domingo');";
+
+    private static final String INSERTS_CURSOS="insert into CURSOS values\n" +
             "(1,'0267','Base de Datos Avanzado ii',1),\n" +
             "(2,'0557','Desarrollo de Aplicaciones Móviles i',1),\n" +
             "(3,'0778','Desarrollo para Entorno Web',1),\n" +
@@ -322,8 +337,9 @@ public class DbHelper extends SQLiteOpenHelper {
             "(5,'1352','Inglés Profesional I',1),\n" +
             "(6,'0720','Organización y Constitución de Empresas',1),\n" +
             "(7,'0779','Proyecto de Investigación',1),\n" +
-            "(8,'1369','Ética Profesional',1);\n" +
-            "insert into CARRERAS values\n" +
+            "(8,'1369','Ética Profesional',1);";
+
+    private static final String INSERTS_CARRERAS="insert into CARRERAS values\n" +
             "(1, 'ADMINISTRACIÓN BANCARIA TR'),\n" +
             "(2, 'ADMINISTRACIÓN DE NEGOCIOS INTERNACIONALES TR'),\n" +
             "(3, 'ADMINISTRACIÓN DE RECURSOS HUMANOS TR'),\n" +
@@ -336,8 +352,9 @@ public class DbHelper extends SQLiteOpenHelper {
             "(10,'DISEÑO GRÁFICO TR'),\n" +
             "(11,'INDUSTRIAL Y SISTEMAS TR'),\n" +
             "(12,'MARKETING TR'),\n" +
-            "(13,'REDES Y COMUNICACIONES TR');\n" +
-            "insert into TIPO_AULA VALUES\n" +
+            "(13,'REDES Y COMUNICACIONES TR');";
+
+    private static final String INSERTS_TIPO_AULA="INSERT INTO TIPO_AULA VALUES\n" +
             "(1,'TEORIA'),\n" +
             "(3,'PRÁCTICA/TALLER'),\n" +
             "(2,'LABORATORIO');";
