@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa.dao;
 
+import android.content.Context;
+
 import com.example.romario.proyectoa.dao.alumno.AlumnoDAO;
 import com.example.romario.proyectoa.dao.alumno.SQLiteAlumnoDAO;
 import com.example.romario.proyectoa.dao.alumnoHorario.AlumnoHorarioDAO;
@@ -37,8 +39,8 @@ import com.example.romario.proyectoa.dao.tipoAula.TipoAulaDAO;
 public class SQLiteFactory extends Factory {
 
     @Override
-    public AlumnoDAO getAlumnoDAO() {
-        return new SQLiteAlumnoDAO();
+    public AlumnoDAO getAlumnoDAO(Context context) {
+        return new SQLiteAlumnoDAO(context);
     }
 
     @Override
@@ -92,8 +94,8 @@ public class SQLiteFactory extends Factory {
     }
 
     @Override
-    public ProfesorDAO getProfesorDAO() {
-        return new SQLiteProfesorDAO();
+    public ProfesorDAO getProfesorDAO(Context context) {
+        return new SQLiteProfesorDAO(context);
     }
 
     @Override

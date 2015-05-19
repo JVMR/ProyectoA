@@ -26,7 +26,7 @@ public class SQLiteAlumnoDAO implements AlumnoDAO {
         try {
             DbHelper helper = new DbHelper(context);
             SQLiteDatabase database = helper.getReadableDatabase();
-            Cursor q = database.rawQuery("SELECT * FROM ALUMNOS;",null);
+            Cursor q = database.rawQuery("SELECT * FROM ALUMNOS",null);
             Alumno obj;
             while (q.moveToNext())
             {

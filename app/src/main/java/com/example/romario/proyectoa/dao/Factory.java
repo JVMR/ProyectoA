@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa.dao;
 
+import android.content.Context;
+
 import com.example.romario.proyectoa.dao.alumno.AlumnoDAO;
 import com.example.romario.proyectoa.dao.alumnoHorario.AlumnoHorarioDAO;
 import com.example.romario.proyectoa.dao.aula.AulaDAO;
@@ -22,7 +24,7 @@ import com.example.romario.proyectoa.dao.tipoAula.TipoAulaDAO;
 public abstract class Factory {
     public static final int TIPO_SQLITE = 1;
 
-    public abstract AlumnoDAO getAlumnoDAO();
+    public abstract AlumnoDAO getAlumnoDAO(Context context);
     public abstract AlumnoHorarioDAO getAlumnoHorarioDAO();
     public abstract AulaDAO getAula();
     public abstract CalificacionDAO getCalificacionDAO();
@@ -33,7 +35,7 @@ public abstract class Factory {
     public abstract EstadoDAO getEstadoDAO();
     public abstract EvaluacionDAO getEvaluacionDAO();
     public abstract HorarioDAO getHorarioDAO();
-    public abstract ProfesorDAO getProfesorDAO();
+    public abstract ProfesorDAO getProfesorDAO(Context context);
     public abstract RegistroNotaDAO getRegistroNota();
     public abstract SeccionDAO getSeccion();
     public abstract TipoAulaDAO getTipoAulaDAO();
