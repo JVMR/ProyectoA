@@ -3,12 +3,6 @@ package com.example.romario.proyectoa.conexion;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-
 
 /**
  * Created by Hernan on 18/05/2015.
@@ -40,6 +34,12 @@ public class DbHelper extends SQLiteOpenHelper {
             "  descripcion VARCHAR(45) NULL\n" +
             ");\n" +
             "\n" +
+            "CREATE TABLE MODALIDADES_ESTUDIOS(\n" +
+            "    modalidadEstudioId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
+            "    descripcion VARCHAR(45) NOT NULL UNIQUE,\n" +
+            "    abreviatura CHAR(2) NOT NULL UNIQUE\n" +
+            ");\n" +
+            "\n" +
             "CREATE TABLE ALUMNOS (\n" +
             "  alumnoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  nombres VARCHAR(20) NOT NULL,\n" +
@@ -67,7 +67,8 @@ public class DbHelper extends SQLiteOpenHelper {
             "CREATE TABLE CURSOS (\n" +
             "  cursoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  codigo CHAR(4) NOT NULL,\n" +
-            "  descripcion VARCHAR(45) NOT NULL UNIQUE\n" +
+            "  descripcion VARCHAR(45) NOT NULL UNIQUE,\n" +
+            "  modalidadEstudioId INTEGER NOT NULL REFERENCES MODALIDADES_ESTUDIOS(modalidadEstudioId)\n" +
             ");\n" +
             "\n" +
             "CREATE TABLE CARRERAS_CURSOS (\n" +
@@ -140,12 +141,17 @@ public class DbHelper extends SQLiteOpenHelper {
             "  cursoId INTEGER NOT NULL REFERENCES CURSOS(cursoId),\n" +
             "  evaluacionId INTEGER NOT NULL REFERENCES EVALUACIONES(evaluacionId),\n" +
             "  calificacionesId INTEGER NOT NULL REFERENCES CALIFICACIONES(calificacionesId)\n" +
-            ");";
+            ");\n";
 
-    private static final String INSERTS="insert into ESTADOS (estadoId, descripcion) values\n" +
+    private static final String INSERTS="insert into ESTADOS values\n" +
             "(1, 'MATRICULA REGULAR'),\n" +
             "(2, 'RETIRO TEMPORAL'),\n" +
             "(3, 'DESAPROBADO POR INASISTENCIA');\n" +
+            "\n" +
+            "insert into MODALIDADES_ESTUDIOS values\n" +
+            "(1, 'CARRERAS TÉCNICAS','AC'),\n" +
+            "(2, 'PROGRAMA DE ADELANTOS','AD'),\n" +
+            "(3, 'DIPLOMADOS CIBERTEC','DC');\n" +
             "\n" +
             "INSERT INTO PROFESORES VALUES(1,'Chris','Reyes','Powell','pcpowell0@cibertec.edu.pe','cpowell0','abc123'),\n" +
             "(2,'Maria','Boyd','Berry','pmberry1@cibertec.edu.pe','mberry1','FzsZ54d'),\n" +
@@ -168,7 +174,7 @@ public class DbHelper extends SQLiteOpenHelper {
             "(19,'Nancy','Bowman','Rodriguez','pnrodriguezi@cibertec.edu.pe','nrodriguezi','d7cBtbC'),\n" +
             "(20,'Catherine','Owens','Fisher','pcfisherj@cibertec.edu.pe','cfisherj','LrARaoB7l7');\n" +
             "\n" +
-            "insert into ALUMNOS (alumnoId, nombres, apellidoPaterno, apellidoMaterno, email, estadoId) values\n" +
+            "insert into ALUMNOS values\n" +
             "(1, 'Phyllis', 'Gray', 'Webb', 'pwebb0@webmd.com',1),\n" +
             "(2, 'Kimberly', 'Reed', 'Coleman', 'kcoleman1@zdnet.com',1),\n" +
             "(3, 'Virginia', 'George', 'Pierce', 'vpierce2@buzzfeed.com',1),\n" +
@@ -270,7 +276,7 @@ public class DbHelper extends SQLiteOpenHelper {
             "(99, 'Laura', 'Stanley', 'Alvarez', 'lalvarez2q@telegraph.co.uk',1),\n" +
             "(100, 'Louise', 'Graham', 'Medina', 'lmedina2r@yahoo.com',1);\n" +
             "\n" +
-            "insert into DIAS (diaId, descripcion) values (1, 'Lunes'),\n" +
+            "insert into DIAS values (1, 'Lunes'),\n" +
             "(2, 'Martes'),\n" +
             "(3, 'Miércoles'),\n" +
             "(4, 'Jueves'),\n" +
@@ -278,17 +284,17 @@ public class DbHelper extends SQLiteOpenHelper {
             "(6, 'Sábado'),\n" +
             "(7, 'Domingo');\n" +
             "\n" +
-            "insert into CURSOS (cursoId, codigo ,descripcion) values\n" +
-            "(1,'0267','Base de Datos Avanzado ii'),\n" +
-            "(2,'0557','Desarrollo de Aplicaciones Móviles i'),\n" +
-            "(3,'0778','Desarrollo para Entorno Web'),\n" +
-            "(4,'0772','Fundamentos de Calidad de Software'),\n" +
-            "(5,'1352','Inglés Profesional I'),\n" +
-            "(6,'0720','Organización y Constitución de Empresas'),\n" +
-            "(7,'0779','Proyecto de Investigación'),\n" +
-            "(8,'1369','Ética Profesional');\n" +
+            "insert into CURSOS values\n" +
+            "(1,'0267','Base de Datos Avanzado ii',1),\n" +
+            "(2,'0557','Desarrollo de Aplicaciones Móviles i',1),\n" +
+            "(3,'0778','Desarrollo para Entorno Web',1),\n" +
+            "(4,'0772','Fundamentos de Calidad de Software',1),\n" +
+            "(5,'1352','Inglés Profesional I',1),\n" +
+            "(6,'0720','Organización y Constitución de Empresas',1),\n" +
+            "(7,'0779','Proyecto de Investigación',1),\n" +
+            "(8,'1369','Ética Profesional',1);\n" +
             "\n" +
-            "insert into CARRERAS (carreraId, descripcion) values\n" +
+            "insert into CARRERAS values\n" +
             "(1, 'ADMINISTRACIÓN BANCARIA TR'),\n" +
             "(2, 'ADMINISTRACIÓN DE NEGOCIOS INTERNACIONALES TR'),\n" +
             "(3, 'ADMINISTRACIÓN DE RECURSOS HUMANOS TR'),\n" +
@@ -307,6 +313,4 @@ public class DbHelper extends SQLiteOpenHelper {
             "(1,'TEORIA'),\n" +
             "(3,'PRÁCTICA/TALLER'),\n" +
             "(2,'LABORATORIO');";
-
-
 }

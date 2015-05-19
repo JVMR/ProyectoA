@@ -5,6 +5,12 @@ CREATE TABLE ESTADOS (
   descripcion VARCHAR(45) NULL
 );
 
+CREATE TABLE MODALIDADES_ESTUDIOS(
+    modalidadEstudioId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    descripcion VARCHAR(45) NOT NULL UNIQUE,
+    abreviatura CHAR(2) NOT NULL UNIQUE
+);
+
 CREATE TABLE ALUMNOS (
   alumnoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   nombres VARCHAR(20) NOT NULL,
@@ -32,7 +38,8 @@ CREATE TABLE CARRERAS (
 CREATE TABLE CURSOS (
   cursoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   codigo CHAR(4) NOT NULL,
-  descripcion VARCHAR(45) NOT NULL UNIQUE
+  descripcion VARCHAR(45) NOT NULL UNIQUE,
+  modalidadEstudioId INTEGER NOT NULL REFERENCES MODALIDADES_ESTUDIOS(modalidadEstudioId)
 );
 
 CREATE TABLE CARRERAS_CURSOS (
@@ -107,10 +114,15 @@ CREATE TABLE REGISTRO_NOTAS (
   calificacionesId INTEGER NOT NULL REFERENCES CALIFICACIONES(calificacionesId)
 );
 
-insert into ESTADOS (estadoId, descripcion) values
+insert into ESTADOS values
 (1, 'MATRICULA REGULAR'),
 (2, 'RETIRO TEMPORAL'),
 (3, 'DESAPROBADO POR INASISTENCIA');
+
+insert into MODALIDADES_ESTUDIOS values
+(1, 'CARRERAS TÉCNICAS','AC'),
+(2, 'PROGRAMA DE ADELANTOS','AD'),
+(3, 'DIPLOMADOS CIBERTEC','DC');
 
 INSERT INTO PROFESORES VALUES(1,'Chris','Reyes','Powell','pcpowell0@cibertec.edu.pe','cpowell0','abc123'),
 (2,'Maria','Boyd','Berry','pmberry1@cibertec.edu.pe','mberry1','FzsZ54d'),
@@ -133,7 +145,7 @@ INSERT INTO PROFESORES VALUES(1,'Chris','Reyes','Powell','pcpowell0@cibertec.edu
 (19,'Nancy','Bowman','Rodriguez','pnrodriguezi@cibertec.edu.pe','nrodriguezi','d7cBtbC'),
 (20,'Catherine','Owens','Fisher','pcfisherj@cibertec.edu.pe','cfisherj','LrARaoB7l7');
 
-insert into ALUMNOS (alumnoId, nombres, apellidoPaterno, apellidoMaterno, email, estadoId) values
+insert into ALUMNOS values
 (1, 'Phyllis', 'Gray', 'Webb', 'pwebb0@webmd.com',1),
 (2, 'Kimberly', 'Reed', 'Coleman', 'kcoleman1@zdnet.com',1),
 (3, 'Virginia', 'George', 'Pierce', 'vpierce2@buzzfeed.com',1),
@@ -235,7 +247,7 @@ insert into ALUMNOS (alumnoId, nombres, apellidoPaterno, apellidoMaterno, email,
 (99, 'Laura', 'Stanley', 'Alvarez', 'lalvarez2q@telegraph.co.uk',1),
 (100, 'Louise', 'Graham', 'Medina', 'lmedina2r@yahoo.com',1);
 
-insert into DIAS (diaId, descripcion) values (1, 'Lunes'),
+insert into DIAS values (1, 'Lunes'),
 (2, 'Martes'),
 (3, 'Miércoles'),
 (4, 'Jueves'),
@@ -243,17 +255,17 @@ insert into DIAS (diaId, descripcion) values (1, 'Lunes'),
 (6, 'Sábado'),
 (7, 'Domingo');
 
-insert into CURSOS (cursoId, codigo ,descripcion) values
-(1,'0267','Base de Datos Avanzado ii'),
-(2,'0557','Desarrollo de Aplicaciones Móviles i'),
-(3,'0778','Desarrollo para Entorno Web'),
-(4,'0772','Fundamentos de Calidad de Software'),
-(5,'1352','Inglés Profesional I'),
-(6,'0720','Organización y Constitución de Empresas'),
-(7,'0779','Proyecto de Investigación'),
-(8,'1369','Ética Profesional');
+insert into CURSOS values
+(1,'0267','Base de Datos Avanzado ii',1),
+(2,'0557','Desarrollo de Aplicaciones Móviles i',1),
+(3,'0778','Desarrollo para Entorno Web',1),
+(4,'0772','Fundamentos de Calidad de Software',1),
+(5,'1352','Inglés Profesional I',1),
+(6,'0720','Organización y Constitución de Empresas',1),
+(7,'0779','Proyecto de Investigación',1),
+(8,'1369','Ética Profesional',1);
 
-insert into CARRERAS (carreraId, descripcion) values
+insert into CARRERAS values
 (1, 'ADMINISTRACIÓN BANCARIA TR'),
 (2, 'ADMINISTRACIÓN DE NEGOCIOS INTERNACIONALES TR'),
 (3, 'ADMINISTRACIÓN DE RECURSOS HUMANOS TR'),
