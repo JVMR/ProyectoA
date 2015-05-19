@@ -114,7 +114,7 @@ insert into ESTADOS (estadoId, descripcion) values
 (2, 'RETIRO TEMPORAL'),
 (3, 'DESAPROBADO POR INASISTENCIA');
 
-INSERT INTO PROFESORES VALUES(1,'Chris','Reyes','Powell','pcpowell0@cibertec.edu.pe','cpowell0','lUZ7JQE38eb'),
+INSERT INTO PROFESORES VALUES(1,'Chris','Reyes','Powell','pcpowell0@cibertec.edu.pe','cpowell0','abc123'),
 (2,'Maria','Boyd','Berry','pmberry1@cibertec.edu.pe','mberry1','FzsZ54d'),
 (3,'Jimmy','Roberts','Cruz','pjcruz2@cibertec.edu.pe','jcruz2','XKeeVx'),
 (4,'Bruce','Porter','Mills','pbmills3@cibertec.edu.pe','bmills3','agiU4VP'),
