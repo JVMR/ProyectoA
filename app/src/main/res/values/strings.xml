@@ -20,4 +20,18 @@
     <string name="strRegistrar">Registrar Notas</string>
     <string name="strExportar">Exportar Notas</string>
 
+    <string name="strModalidad">Modelidad de Estudio : </string>
+    <string name="strPreIngreso">PreIngreso de Notas. </string>
+    <string name="strIngresoDescripcion">Permite el preingreso de las notas de los alumnos.</string>
+    <string name="strCiclo">Ciclo Académico : </string>
+    <string name="strProfesor">Profesor:</string>
+    <string name="strAsignatura">Asignatura:</string>    
+    <string name="strSeccion">Sección:</string>
+    <string name="strGrupo">Grupo:</string>
+    <string name="strTipo">Tipo de Prueba:</string>
+    <string name="strNumero">Nro. de Prueba:</string>
+    
+    
+    
+
 </resources>
