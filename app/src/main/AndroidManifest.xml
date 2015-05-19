@@ -25,6 +25,18 @@
             android:name=".OpcionesActivity"
             android:label="@string/title_activity_opciones" >
         </activity>
+        <activity
+            android:name=".ImportarActivity"
+            android:label="@string/title_activity_importar" >
+        </activity>
+        <activity
+            android:name=".ExportarActivity"
+            android:label="@string/title_activity_exportar" >
+        </activity>
+        <activity
+            android:name=".RegistrarNotasActivity"
+            android:label="@string/title_activity_registrar_notas" >
+        </activity>
     </application>
 
 </manifest>

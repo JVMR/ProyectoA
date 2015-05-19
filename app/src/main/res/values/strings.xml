@@ -11,5 +11,8 @@
     <string name="strPassword">Password</string>
     <string name="strEntrar">Entrar</string>
     <string name="title_activity_opciones">OpcionesActivity</string>
+    <string name="title_activity_importar">ImportarActivity</string>
+    <string name="title_activity_exportar">ExportarActivity</string>
+    <string name="title_activity_registrar_notas">RegistrarNotasActivity</string>
 
 </resources>
