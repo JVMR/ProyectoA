@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa.dao.carerra;
 
+import android.content.Context;
+
 import com.example.romario.proyectoa.beans.Carrera;
 
 import java.util.ArrayList;
@@ -8,6 +10,14 @@ import java.util.ArrayList;
  * Created by Hernan on 17/05/2015.
  */
 public class SQLiteCarerraDAO implements CarerraDAO {
+
+    private Context context;
+
+    public SQLiteCarerraDAO(Context context)
+    {
+        this.context=context;
+    }
+
     @Override
     public ArrayList<Carrera> listar() {
         return null;

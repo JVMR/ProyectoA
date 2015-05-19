@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa.dao.seccion;
 
+import android.content.Context;
+
 import com.example.romario.proyectoa.beans.Seccion;
 import com.example.romario.proyectoa.dao.seccion.SeccionDAO;
 
@@ -8,7 +10,14 @@ import java.util.ArrayList;
 /**
  * Created by Hernan on 17/05/2015.
  */
-public class SQLiteSeccion implements SeccionDAO {
+public class SQLiteSeccionDAO implements SeccionDAO {
+    private Context context;
+
+    public SQLiteSeccionDAO(Context context)
+    {
+        this.context=context;
+    }
+
     @Override
     public ArrayList<Seccion> listar() {
         return null;

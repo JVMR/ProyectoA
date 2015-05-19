@@ -1,8 +1,11 @@
 package com.example.romario.proyectoa.dao.ciclo;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
-import com.example.romario.proyectoa.beans.Seccion;
+import com.example.romario.proyectoa.beans.Ciclo;
+import com.example.romario.proyectoa.conexion.DbHelper;
 
 import java.util.ArrayList;
 
@@ -19,27 +22,44 @@ public class SQLiteCicloDAO implements CicloDAO {
     }
 
     @Override
-    public ArrayList<Seccion> listar() {
+    public ArrayList<Ciclo> listar() {
+        ArrayList<Ciclo> lista = new ArrayList<>();
+        try {
+            DbHelper helper = new DbHelper(context);
+            SQLiteDatabase database = helper.getReadableDatabase();
+            Cursor q = database.rawQuery("SELECT * FROM CICLOS ORDER BY descripcion ASC",null);
+            Ciclo obj;
+            while (q.moveToNext())
+            {
+                obj = new Ciclo();
+                obj.setCicloId(q.getInt(0));
+                obj.setDescripcion(q.getString(1));
+                lista.add(obj);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
+    @Override
+    public Ciclo buscar(int id) {
         return null;
     }
 
     @Override
-    public Seccion buscar(int id) {
-        return null;
-    }
-
-    @Override
-    public int insertar(Seccion obj) {
+    public int insertar(Ciclo obj) {
         return 0;
     }
 
     @Override
-    public int editar(Seccion obj) {
+    public int editar(Ciclo obj) {
         return 0;
     }
 
     @Override
-    public int eliminar(Seccion obj) {
+    public int eliminar(Ciclo obj) {
         return 0;
     }
 }

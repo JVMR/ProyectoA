@@ -34,6 +34,10 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_CALIFICACIONES);
         db.execSQL(CREATE_TABLE_REGISTRO_NOTAS);
 
+        db.execSQL(CREATE_TABLE_CICLOS);
+        db.execSQL(CREATE_TABLE_CARGA_DOCENTE);
+        db.execSQL(CREATE_TABLE_MATRICULA);
+
         db.execSQL(INSERTS_ESTADOS);
         db.execSQL(INSERTS_MODALIDADES_ESTUDIOS);
         db.execSQL(INSERTS_ALUMNOS);
@@ -42,6 +46,12 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(INSERTS_CURSOS);
         db.execSQL(INSERTS_CARRERAS);
         db.execSQL(INSERTS_TIPO_AULA);
+
+        for (int i=2014;i<=2030;i++)
+        {
+            db.execSQL("INSERT INTO CICLOS(descripcion) VALUES(?),(?);",new String[]{""+i+"-I",""+i+"-II"});
+        }
+
     }
 
     @Override
@@ -155,8 +165,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_ALUMNOS_HORARIOS=CREATE_PRAGMA+" "+"CREATE TABLE ALUMNOS_HORARIOS (\n" +
             "  alumnoHorarioId INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  alumnoId INTEGER NOT NULL REFERENCES ALUMNOS(alumnoId),\n" +
-            "  horarioId INTEGER NOT NULL REFERENCES HORARIOS(horarioId),\n" +
-            "  estadoId INTEGER NOT NULL REFERENCES ESTADOS(estadoId)\n" +
+            "  horarioId INTEGER NOT NULL REFERENCES HORARIOS(horarioId)\n" +
             ");";
 
     private static final String CREATE_TABLE_EVALUACIONES="CREATE TABLE EVALUACIONES (\n" +
@@ -183,6 +192,25 @@ public class DbHelper extends SQLiteOpenHelper {
             "  cursoId INTEGER NOT NULL REFERENCES CURSOS(cursoId),\n" +
             "  evaluacionId INTEGER NOT NULL REFERENCES EVALUACIONES(evaluacionId),\n" +
             "  calificacionesId INTEGER NOT NULL REFERENCES CALIFICACIONES(calificacionesId)\n" +
+            ");";
+
+    private static final String CREATE_TABLE_CICLOS="CREATE TABLE CICLOS (\n" +
+            "\tcicloId INTEGER PRIMARY KEY  AUTOINCREMENT NOT NULL,\n" +
+            "\tdescripcion VARCHAR(7) NOT NULL UNIQUE\n" +
+            ");";
+
+    private static final String CREATE_TABLE_CARGA_DOCENTE="CREATE TABLE CARGA_DOCENTE (\n" +
+            "\tcargaDocenteId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+            "\tcursoId INTEGER NOT NULL REFERENCES CURSOS(cursoId),\n" +
+            "\tprofesorId INTEGER NOT NULL REFERENCES PROFESORES(profesorId),\n" +
+            "\tcicloId INTEGER NOT NULL REFERENCES CICLOS(cicloId)\n" +
+            ");";
+
+    private static final String CREATE_TABLE_MATRICULA="CREATE TABLE MATRICULA (\n" +
+            "\tmatriculaId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
+            "\talumnoId INTEGER NOT NULL REFERENCES ALUMNOS(alumnoId),\n" +
+            "\tcicloId INTEGER NOT NULL REFERENCES CICLOS(cicloId),\n" +
+            "\testadoId INTEGER NOT NULL REFERENCES ESTADOS(estadoId)\n" +
             ");";
 
 

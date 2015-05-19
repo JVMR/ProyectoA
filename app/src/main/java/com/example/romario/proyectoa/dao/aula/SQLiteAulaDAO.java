@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa.dao.aula;
 
+import android.content.Context;
+
 import com.example.romario.proyectoa.beans.Aula;
 
 import java.util.ArrayList;
@@ -7,7 +9,14 @@ import java.util.ArrayList;
 /**
  * Created by Hernan on 17/05/2015.
  */
-public class SQLiteAula implements AulaDAO {
+public class SQLiteAulaDAO implements AulaDAO {
+    private Context context;
+
+    public SQLiteAulaDAO(Context context)
+    {
+        this.context=context;
+    }
+
     @Override
     public ArrayList<Aula> listar() {
         return null;

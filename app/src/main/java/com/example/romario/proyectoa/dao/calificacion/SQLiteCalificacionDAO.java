@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa.dao.calificacion;
 
+import android.content.Context;
+
 import com.example.romario.proyectoa.beans.Calificacion;
 
 import java.util.ArrayList;
@@ -8,6 +10,15 @@ import java.util.ArrayList;
  * Created by Hernan on 17/05/2015.
  */
 public class SQLiteCalificacionDAO implements CalificacionDAO {
+
+    private Context context;
+
+    public SQLiteCalificacionDAO(Context context)
+    {
+        this.context=context;
+    }
+
+
     @Override
     public ArrayList<Calificacion> listar() {
         return null;

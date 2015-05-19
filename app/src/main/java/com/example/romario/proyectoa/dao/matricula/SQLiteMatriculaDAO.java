@@ -1,7 +1,8 @@
-package com.example.romario.proyectoa.dao.m;
+package com.example.romario.proyectoa.dao.matricula;
 
 import android.content.Context;
 
+import com.example.romario.proyectoa.beans.Matricula;
 import com.example.romario.proyectoa.beans.Seccion;
 import com.example.romario.proyectoa.dao.matricula.MatriculaDAO;
 
@@ -19,27 +20,27 @@ public class SQLiteMatriculaDAO implements MatriculaDAO {
     }
 
     @Override
-    public ArrayList<Seccion> listar() {
+    public ArrayList<Matricula> listar() {
         return null;
     }
 
     @Override
-    public Seccion buscar(int id) {
+    public Matricula buscar(int id) {
         return null;
     }
 
     @Override
-    public int insertar(Seccion obj) {
+    public int insertar(Matricula obj) {
         return 0;
     }
 
     @Override
-    public int editar(Seccion obj) {
+    public int editar(Matricula obj) {
         return 0;
     }
 
     @Override
-    public int eliminar(Seccion obj) {
+    public int eliminar(Matricula obj) {
         return 0;
     }
 }

@@ -7,7 +7,7 @@ import com.example.romario.proyectoa.dao.alumno.SQLiteAlumnoDAO;
 import com.example.romario.proyectoa.dao.alumnoHorario.AlumnoHorarioDAO;
 import com.example.romario.proyectoa.dao.alumnoHorario.SQLiteAlumnoHorarioDAO;
 import com.example.romario.proyectoa.dao.aula.AulaDAO;
-import com.example.romario.proyectoa.dao.aula.SQLiteAula;
+import com.example.romario.proyectoa.dao.aula.SQLiteAulaDAO;
 import com.example.romario.proyectoa.dao.calificacion.CalificacionDAO;
 import com.example.romario.proyectoa.dao.calificacion.SQLiteCalificacionDAO;
 import com.example.romario.proyectoa.dao.carerra.CarerraDAO;
@@ -28,15 +28,15 @@ import com.example.romario.proyectoa.dao.cursoEvaluacion.SQLiteCursoEvaluacionDA
 import com.example.romario.proyectoa.dao.evaluacion.SQLiteEvaluacionDAO;
 import com.example.romario.proyectoa.dao.horario.HorarioDAO;
 import com.example.romario.proyectoa.dao.horario.SQLiteHorarioDAO;
-import com.example.romario.proyectoa.dao.m.SQLiteMatriculaDAO;
+import com.example.romario.proyectoa.dao.matricula.SQLiteMatriculaDAO;
 import com.example.romario.proyectoa.dao.matricula.MatriculaDAO;
 import com.example.romario.proyectoa.dao.modalidadEstudio.ModalidadEstudioDAO;
 import com.example.romario.proyectoa.dao.modalidadEstudio.SQLiteModalidadEstudioDAO;
 import com.example.romario.proyectoa.dao.profesor.ProfesorDAO;
 import com.example.romario.proyectoa.dao.profesor.SQLiteProfesorDAO;
 import com.example.romario.proyectoa.dao.registroNota.RegistroNotaDAO;
-import com.example.romario.proyectoa.dao.registroNota.SQLiteRegistroNota;
-import com.example.romario.proyectoa.dao.seccion.SQLiteSeccion;
+import com.example.romario.proyectoa.dao.registroNota.SQLiteRegistroNotaDAO;
+import com.example.romario.proyectoa.dao.seccion.SQLiteSeccionDAO;
 import com.example.romario.proyectoa.dao.seccion.SeccionDAO;
 import com.example.romario.proyectoa.dao.tipoAula.SQLiteTipoAulaDAO;
 import com.example.romario.proyectoa.dao.tipoAula.TipoAulaDAO;
@@ -52,53 +52,53 @@ public class SQLiteFactory extends Factory {
     }
 
     @Override
-    public AlumnoHorarioDAO getAlumnoHorarioDAO() {
-        return new SQLiteAlumnoHorarioDAO();
+    public AlumnoHorarioDAO getAlumnoHorarioDAO(Context context) {
+        return new SQLiteAlumnoHorarioDAO(context);
     }
 
     @Override
-    public AulaDAO getAula() {
-        return new SQLiteAula();
+    public AulaDAO getAulaDAO(Context context) {
+        return new SQLiteAulaDAO(context);
     }
 
     @Override
-    public CalificacionDAO getCalificacionDAO() {
-        return new SQLiteCalificacionDAO();
+    public CalificacionDAO getCalificacionDAO(Context context) {
+        return new SQLiteCalificacionDAO(context);
     }
 
     @Override
-    public CarerraDAO getCarerraDAO() {
-        return new SQLiteCarerraDAO();
+    public CarerraDAO getCarerraDAO(Context context) {
+        return new SQLiteCarerraDAO(context);
     }
 
     @Override
-    public CursoDAO getCursoDAO() {
-        return new SQLiteCursoDAO();
+    public CursoDAO getCursoDAO(Context context) {
+        return new SQLiteCursoDAO(context);
     }
 
     @Override
-    public CursoEvaluacionDAO getCursoEvaluacionDAO() {
-        return new SQLiteCursoEvaluacionDAO();
+    public CursoEvaluacionDAO getCursoEvaluacionDAO(Context context) {
+        return new SQLiteCursoEvaluacionDAO(context);
     }
 
     @Override
-    public DiaDAO getDiaDAO() {
-        return new SQLiteDiaDAO();
+    public DiaDAO getDiaDAO(Context context) {
+        return new SQLiteDiaDAO(context);
     }
 
     @Override
-    public EstadoDAO getEstadoDAO() {
-        return new SQLiteEstadoDAO();
+    public EstadoDAO getEstadoDAO(Context context) {
+        return new SQLiteEstadoDAO(context);
     }
 
     @Override
-    public EvaluacionDAO getEvaluacionDAO() {
-        return new SQLiteEvaluacionDAO();
+    public EvaluacionDAO getEvaluacionDAO(Context context) {
+        return new SQLiteEvaluacionDAO(context);
     }
 
     @Override
-    public HorarioDAO getHorarioDAO() {
-        return new SQLiteHorarioDAO();
+    public HorarioDAO getHorarioDAO(Context context) {
+        return new SQLiteHorarioDAO(context);
     }
 
     @Override
@@ -107,18 +107,18 @@ public class SQLiteFactory extends Factory {
     }
 
     @Override
-    public RegistroNotaDAO getRegistroNota() {
-        return new SQLiteRegistroNota();
+    public RegistroNotaDAO getRegistroNotaDAO(Context context) {
+        return new SQLiteRegistroNotaDAO(context);
     }
 
     @Override
-    public SeccionDAO getSeccion() {
-        return new SQLiteSeccion();
+    public SeccionDAO getSeccionDAO(Context context) {
+        return new SQLiteSeccionDAO(context);
     }
 
     @Override
-    public TipoAulaDAO getTipoAulaDAO() {
-        return new SQLiteTipoAulaDAO();
+    public TipoAulaDAO getTipoAulaDAO(Context context) {
+        return new SQLiteTipoAulaDAO(context);
     }
 
     @Override

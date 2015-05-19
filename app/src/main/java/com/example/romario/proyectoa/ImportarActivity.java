@@ -11,9 +11,11 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.romario.proyectoa.beans.Ciclo;
 import com.example.romario.proyectoa.beans.ModalidadEstudio;
 import com.example.romario.proyectoa.beans.Profesor;
 import com.example.romario.proyectoa.dao.Factory;
+import com.example.romario.proyectoa.dao.ciclo.CicloDAO;
 import com.example.romario.proyectoa.dao.modalidadEstudio.ModalidadEstudioDAO;
 
 import java.util.ArrayList;
@@ -40,7 +42,7 @@ public class ImportarActivity extends ActionBarActivity implements View.OnClickL
         spnModalidad=(Spinner)findViewById(R.id.spnModalidadImportar);
         llenarModalidades();
         spnCiclo=(Spinner)findViewById(R.id.spnCicloImportar);
-        //llenarCiclos();
+        llenarCiclos();
 
 
         //Typeface myCustomFont =Typeface.createFromAsset(getAssets(),"fonts/fontawesome.ttf");
@@ -49,6 +51,15 @@ public class ImportarActivity extends ActionBarActivity implements View.OnClickL
         //btnImportar.setTypeface(myCustomFont);
         btnImportar.setOnClickListener(this);
 
+    }
+
+    private void llenarCiclos() {
+        Factory factory = Factory.getFactory(Factory.TIPO_SQLITE);
+        CicloDAO cicloDAO = factory.getCicloDAO(this);
+        ArrayList<Ciclo> lista = cicloDAO.listar();
+
+        ArrayAdapter<Ciclo> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,lista);
+        spnCiclo.setAdapter(adapter);
     }
 
     private void llenarModalidades() {

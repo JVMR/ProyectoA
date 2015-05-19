@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa.dao.registroNota;
 
+import android.content.Context;
+
 import com.example.romario.proyectoa.beans.RegistroNota;
 
 import java.util.ArrayList;
@@ -7,7 +9,14 @@ import java.util.ArrayList;
 /**
  * Created by Hernan on 17/05/2015.
  */
-public class SQLiteRegistroNota implements RegistroNotaDAO {
+public class SQLiteRegistroNotaDAO implements RegistroNotaDAO {
+    private Context context;
+
+    public SQLiteRegistroNotaDAO(Context context)
+    {
+        this.context=context;
+    }
+
     @Override
     public ArrayList<RegistroNota> listar() {
         return null;

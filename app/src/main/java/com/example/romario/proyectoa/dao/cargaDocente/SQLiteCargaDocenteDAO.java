@@ -2,6 +2,7 @@ package com.example.romario.proyectoa.dao.cargaDocente;
 
 import android.content.Context;
 
+import com.example.romario.proyectoa.beans.CargaDocente;
 import com.example.romario.proyectoa.beans.Seccion;
 
 import java.util.ArrayList;
@@ -17,28 +18,29 @@ public class SQLiteCargaDocenteDAO implements CargaDocenteDAO {
         this.context=context;
     }
 
+
     @Override
-    public ArrayList<Seccion> listar() {
+    public ArrayList<CargaDocente> listar() {
         return null;
     }
 
     @Override
-    public Seccion buscar(int id) {
+    public CargaDocente buscar(int id) {
         return null;
     }
 
     @Override
-    public int insertar(Seccion obj) {
+    public int insertar(CargaDocente obj) {
         return 0;
     }
 
     @Override
-    public int editar(Seccion obj) {
+    public int editar(CargaDocente obj) {
         return 0;
     }
 
     @Override
-    public int eliminar(Seccion obj) {
+    public int eliminar(CargaDocente obj) {
         return 0;
     }
 }

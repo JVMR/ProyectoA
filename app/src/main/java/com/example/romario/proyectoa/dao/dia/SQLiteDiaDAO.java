@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa.dao.dia;
 
+import android.content.Context;
+
 import com.example.romario.proyectoa.beans.Dia;
 
 import java.util.ArrayList;
@@ -8,6 +10,13 @@ import java.util.ArrayList;
  * Created by Hernan on 17/05/2015.
  */
 public class SQLiteDiaDAO implements DiaDAO {
+    private Context context;
+
+    public SQLiteDiaDAO(Context context)
+    {
+        this.context=context;
+    }
+
     @Override
     public ArrayList<Dia> listar() {
         return null;

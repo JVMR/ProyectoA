@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa.dao.estado;
 
+import android.content.Context;
+
 import com.example.romario.proyectoa.beans.Estado;
 
 import java.util.ArrayList;
@@ -8,6 +10,13 @@ import java.util.ArrayList;
  * Created by Hernan on 17/05/2015.
  */
 public class SQLiteEstadoDAO implements EstadoDAO {
+    private Context context;
+
+    public SQLiteEstadoDAO(Context context)
+    {
+        this.context=context;
+    }
+
     @Override
     public ArrayList<Estado> listar() {
         return null;

@@ -9,6 +9,13 @@ public class Ciclo implements Serializable {
     private int cicloId;
     private String descripcion;
 
+    @Override
+    public String toString()
+    {
+        return descripcion;
+    }
+
+
     public int getCicloId() {
         return cicloId;
     }

@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa.dao.cursoEvaluacion;
 
+import android.content.Context;
+
 import com.example.romario.proyectoa.beans.CursoEvaluacion;
 import com.example.romario.proyectoa.dao.cursoEvaluacion.CursoEvaluacionDAO;
 
@@ -9,6 +11,13 @@ import java.util.ArrayList;
  * Created by Hernan on 17/05/2015.
  */
 public class SQLiteCursoEvaluacionDAO implements CursoEvaluacionDAO {
+    private Context context;
+
+    public SQLiteCursoEvaluacionDAO(Context context)
+    {
+        this.context=context;
+    }
+
     @Override
     public ArrayList<CursoEvaluacion> listar() {
         return null;

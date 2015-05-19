@@ -1,5 +1,7 @@
 package com.example.romario.proyectoa.dao.alumnoHorario;
 
+import android.content.Context;
+
 import com.example.romario.proyectoa.beans.AlumnoHorario;
 
 import java.util.ArrayList;
@@ -8,6 +10,14 @@ import java.util.ArrayList;
  * Created by Hernan on 17/05/2015.
  */
 public class SQLiteAlumnoHorarioDAO implements AlumnoHorarioDAO {
+
+    private Context context;
+
+    public SQLiteAlumnoHorarioDAO(Context context)
+    {
+        this.context=context;
+    }
+
     @Override
     public ArrayList<AlumnoHorario> listar() {
         return null;
