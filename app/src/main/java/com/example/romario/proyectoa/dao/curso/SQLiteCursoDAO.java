@@ -1,8 +1,11 @@
 package com.example.romario.proyectoa.dao.curso;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.example.romario.proyectoa.beans.Curso;
+import com.example.romario.proyectoa.conexion.DbHelper;
 
 import java.util.ArrayList;
 
@@ -21,7 +24,25 @@ public class SQLiteCursoDAO implements CursoDAO {
 
     @Override
     public ArrayList<Curso> listar() {
-        return null;
+        ArrayList<Curso> lista = new ArrayList<>();
+        try {
+            DbHelper helper = new DbHelper(context);
+            SQLiteDatabase database = helper.getReadableDatabase();
+            Cursor q = database.rawQuery("SELECT * FROM CURSOS",null);
+            Curso obj;
+            while (q.moveToNext())
+            {
+                obj = new Curso();
+                obj.setCursoId(q.getInt(0));
+                obj.setCodigo(q.getString(1));
+                obj.setDescripcion(q.getString(2));
+                lista.add(obj);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return lista;
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Curso implements Serializable {
      private int cursoId;
+    private String codigo;
      private String descripcion;
 
     public int getCursoId() {
@@ -20,6 +21,14 @@ public class Curso implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }
 

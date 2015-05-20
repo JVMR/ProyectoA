@@ -22,7 +22,28 @@ public class SQLiteProfesorDAO implements ProfesorDAO {
 
     @Override
     public ArrayList<Profesor> listar() {
-        return null;
+        ArrayList<Profesor> lista = new ArrayList<>();
+        try {
+            DbHelper helper = new DbHelper(context);
+            SQLiteDatabase database = helper.getReadableDatabase();
+            Cursor q = database.rawQuery("SELECT * FROM PROFESORES",null);
+            Profesor obj;
+            while (q.moveToNext())
+            {
+                obj = new Profesor();
+                obj.setProfesorId(q.getInt(0));
+                obj.setNombres(q.getString(1));
+                obj.setApellidoPaterno(q.getString(2));
+                obj.setApellidoMaterno(q.getString(3));
+                obj.setEmail(q.getString(4));
+                obj.setUsername(q.getString(5));
+                lista.add(obj);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return lista;
     }
 
     @Override

@@ -39,7 +39,7 @@ public class ImportarActivity extends ActionBarActivity implements View.OnClickL
         lblProfesor = (TextView)findViewById(R.id.lblProfesorImportar);
         lblProfesor.setText("DOCENTE: "+(profesor.getNombres()+" "+profesor.getApellidoPaterno()).toUpperCase());
 
-        spnModalidad=(Spinner)findViewById(R.id.spnModalidadImportar);
+        spnModalidad=(Spinner)findViewById(R.id.spnModalidadRegistrar);
         llenarModalidades();
         spnCiclo=(Spinner)findViewById(R.id.spnCicloImportar);
         llenarCiclos();
