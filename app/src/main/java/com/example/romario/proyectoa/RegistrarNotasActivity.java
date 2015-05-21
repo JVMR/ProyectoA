@@ -47,10 +47,10 @@ public class RegistrarNotasActivity extends Activity {
         llenarCiclos();
         llenarProfesor();
         llenarAsignatura();
-        llenarSeccion();
+        /*llenarSeccion();
         llenarTipoPrueba();
         llenarGrupo();
-        llenarNumPrueba();
+        llenarNumPrueba();*/
     }
 
 
