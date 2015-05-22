@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbHelper extends SQLiteOpenHelper {
 
     public DbHelper(Context context) {
-        super(context, "damiDb.sqlite", null, 1);
+        super(context, "damiDb01.sqlite", null, 1);
     }
 
     @Override
@@ -116,13 +116,13 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_CARRERAS="CREATE TABLE CARRERAS (\n" +
             "  carreraId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  descripcion VARCHAR(45) NOT NULL UNIQUE\n" +
+            "  modalidadEstudioId INTEGER NOT NULL REFERENCES MODALIDADES_ESTUDIOS(modalidadEstudioId)\n" +
             ");";
 
     private static final String CREATE_TABLE_CURSOS=CREATE_PRAGMA+" "+"CREATE TABLE CURSOS (\n" +
             "  cursoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  codigo CHAR(4) NOT NULL,\n" +
             "  descripcion VARCHAR(45) NOT NULL UNIQUE,\n" +
-            "  modalidadEstudioId INTEGER NOT NULL REFERENCES MODALIDADES_ESTUDIOS(modalidadEstudioId)\n" +
             ");";
 
     private static final String CREATE_TABLE_CARRERAS_CURSOS=CREATE_PRAGMA+" "+"CREATE TABLE CARRERAS_CURSOS (\n" +
@@ -360,29 +360,29 @@ public class DbHelper extends SQLiteOpenHelper {
             "(7, 'Domingo');";
 
     private static final String INSERTS_CURSOS="insert into CURSOS values\n" +
-            "(1,'0267','Base de Datos Avanzado ii',1),\n" +
-            "(2,'0557','Desarrollo de Aplicaciones Móviles i',1),\n" +
-            "(3,'0778','Desarrollo para Entorno Web',1),\n" +
-            "(4,'0772','Fundamentos de Calidad de Software',1),\n" +
-            "(5,'1352','Inglés Profesional I',1),\n" +
-            "(6,'0720','Organización y Constitución de Empresas',1),\n" +
-            "(7,'0779','Proyecto de Investigación',1),\n" +
-            "(8,'1369','Ética Profesional',1);";
+            "(1,'0267','Base de Datos Avanzado ii'),\n" +
+            "(2,'0557','Desarrollo de Aplicaciones Móviles i'),\n" +
+            "(3,'0778','Desarrollo para Entorno Web'),\n" +
+            "(4,'0772','Fundamentos de Calidad de Software'),\n" +
+            "(5,'1352','Inglés Profesional I'),\n" +
+            "(6,'0720','Organización y Constitución de Empresas'),\n" +
+            "(7,'0779','Proyecto de Investigación'),\n" +
+            "(8,'1369','Ética Profesional');";
 
     private static final String INSERTS_CARRERAS="insert into CARRERAS values\n" +
-            "(1, 'ADMINISTRACIÓN BANCARIA TR'),\n" +
-            "(2, 'ADMINISTRACIÓN DE NEGOCIOS INTERNACIONALES TR'),\n" +
-            "(3, 'ADMINISTRACIÓN DE RECURSOS HUMANOS TR'),\n" +
-            "(4, 'ADMINISTRACIÓN TR'),\n" +
-            "(5, 'ADMINISTRACIÓN DE SERVICIOS TURÍSTICOS TR'),\n" +
-            "(6, 'ADMINISTRACIÓN Y SISTEMAS TR'),\n" +
-            "(7, 'COMPUTACIÓN E INFORMÁTICA TR'),\n" +
-            "(8,'CONTABILIDAD TR'),\n" +
-            "(9,'DISEÑO DE INTERIORES TR'),\n" +
-            "(10,'DISEÑO GRÁFICO TR'),\n" +
-            "(11,'INDUSTRIAL Y SISTEMAS TR'),\n" +
-            "(12,'MARKETING TR'),\n" +
-            "(13,'REDES Y COMUNICACIONES TR');";
+            "(1, 'ADMINISTRACIÓN BANCARIA TR','1'),\n" +
+            "(2, 'ADMINISTRACIÓN DE NEGOCIOS INTERNACIONALES TR','1'),\n" +
+            "(3, 'ADMINISTRACIÓN DE RECURSOS HUMANOS TR','1'),\n" +
+            "(4, 'ADMINISTRACIÓN TR','1'),\n" +
+            "(5, 'ADMINISTRACIÓN DE SERVICIOS TURÍSTICOS TR','1'),\n" +
+            "(6, 'ADMINISTRACIÓN Y SISTEMAS TR','1'),\n" +
+            "(7, 'COMPUTACIÓN E INFORMÁTICA TR','1'),\n" +
+            "(8,'CONTABILIDAD TR','1'),\n" +
+            "(9,'DISEÑO DE INTERIORES TR','1'),\n" +
+            "(10,'DISEÑO GRÁFICO TR','1'),\n" +
+            "(11,'INDUSTRIAL Y SISTEMAS TR','1'),\n" +
+            "(12,'MARKETING TR','1'),\n" +
+            "(13,'REDES Y COMUNICACIONES TR','1');";
 
     private static final String INSERTS_TIPO_AULA="INSERT INTO TIPO_AULA VALUES\n" +
             "(1,'TEORIA'),\n" +
@@ -429,7 +429,15 @@ public class DbHelper extends SQLiteOpenHelper {
             "(18,'UNIDADES VIRTUALES 3'),\n" +
             "(19,'UNIDADES VIRTUALES 4');";
 
-
+    private static final String INSERTS_CARRERAS_CURSOS="insert into CARRERAS_CURSOS values\n" +
+            "(1,7,1),\n" +
+            "(2,7,2),\n" +
+            "(3,7,3),\n" +
+            "(4,7,4),\n" +
+            "(5,7,5),\n" +
+            "(6,7,6),\n" +
+            "(7,7,7),\n" +
+            "(8,7,8);";
 
 
 }

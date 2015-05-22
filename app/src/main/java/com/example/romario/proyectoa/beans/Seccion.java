@@ -7,6 +7,11 @@ public class Seccion implements Serializable {
      private int seccionId;
      private String descripcion;
 
+    @Override
+    public String toString() {
+        return descripcion;
+    }
+
     public int getSeccionId() {
         return seccionId;
     }
