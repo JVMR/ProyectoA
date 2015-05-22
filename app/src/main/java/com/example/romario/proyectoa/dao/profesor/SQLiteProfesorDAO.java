@@ -26,7 +26,7 @@ public class SQLiteProfesorDAO implements ProfesorDAO {
         try {
             DbHelper helper = new DbHelper(context);
             SQLiteDatabase database = helper.getReadableDatabase();
-            Cursor q = database.rawQuery("SELECT * FROM PROFESORES",null);
+            Cursor q = database.rawQuery("SELECT * FROM PROFESORES ORDER BY nombres asc",null);
             Profesor obj;
             while (q.moveToNext())
             {

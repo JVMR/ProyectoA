@@ -12,6 +12,11 @@ public class Profesor implements Serializable {
      private String username;
      private String password;
 
+    @Override
+    public String toString() {
+        return apellidoPaterno+" "+apellidoMaterno+", "+nombres;
+    }
+
     public int getProfesorId() {
         return profesorId;
     }

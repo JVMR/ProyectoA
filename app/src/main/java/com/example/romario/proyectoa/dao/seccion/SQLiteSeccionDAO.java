@@ -27,7 +27,7 @@ public class SQLiteSeccionDAO implements SeccionDAO {
         try {
             DbHelper helper = new DbHelper(context);
             SQLiteDatabase database = helper.getReadableDatabase();
-            Cursor q = database.rawQuery("SELECT * FROM SECCIONES",null);
+            Cursor q = database.rawQuery("SELECT * FROM SECCIONES ORDER BY descripcion asc ",null);
             Seccion obj;
             while (q.moveToNext())
             {

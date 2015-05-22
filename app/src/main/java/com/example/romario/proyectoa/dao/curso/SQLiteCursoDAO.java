@@ -28,7 +28,7 @@ public class SQLiteCursoDAO implements CursoDAO {
         try {
             DbHelper helper = new DbHelper(context);
             SQLiteDatabase database = helper.getReadableDatabase();
-            Cursor q = database.rawQuery("SELECT * FROM CURSOS",null);
+            Cursor q = database.rawQuery("SELECT * FROM CURSOS ORDER BY codigo asc",null);
             Curso obj;
             while (q.moveToNext())
             {

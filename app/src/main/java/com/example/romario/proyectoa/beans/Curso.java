@@ -7,6 +7,11 @@ public class Curso implements Serializable {
     private String codigo;
      private String descripcion;
 
+    @Override
+    public String toString() {
+        return codigo+" - "+descripcion;
+    }
+
     public int getCursoId() {
         return cursoId;
     }

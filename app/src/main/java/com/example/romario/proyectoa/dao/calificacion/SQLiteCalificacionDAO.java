@@ -24,24 +24,8 @@ public class SQLiteCalificacionDAO implements CalificacionDAO {
 
     @Override
     public ArrayList<Calificacion> listar() {
-        ArrayList<Calificacion> lista = new ArrayList<>();
-        try {
-            DbHelper helper = new DbHelper(context);
-            SQLiteDatabase database = helper.getReadableDatabase();
-            Cursor q = database.rawQuery("SELECT * FROM CALIFICACIONES",null);
-            Calificacion obj;
-            while (q.moveToNext())
-            {
-                obj = new Calificacion();
-                obj.setNotaId(q.getInt(0));
-                obj.setDescripcion(q.getString(1));
-                lista.add(obj);
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return lista;
+
+        return null;
     }
 
     @Override

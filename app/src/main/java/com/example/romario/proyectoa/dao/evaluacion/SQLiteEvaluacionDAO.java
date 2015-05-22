@@ -1,8 +1,11 @@
 package com.example.romario.proyectoa.dao.evaluacion;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.example.romario.proyectoa.beans.Evaluacion;
+import com.example.romario.proyectoa.conexion.DbHelper;
 import com.example.romario.proyectoa.dao.evaluacion.EvaluacionDAO;
 
 import java.util.ArrayList;
@@ -20,7 +23,24 @@ public class SQLiteEvaluacionDAO implements EvaluacionDAO {
 
     @Override
     public ArrayList<Evaluacion> listar() {
-        return null;
+        ArrayList<Evaluacion> lista = new ArrayList<>();
+        try {
+            DbHelper helper = new DbHelper(context);
+            SQLiteDatabase database = helper.getReadableDatabase();
+            Cursor q = database.rawQuery("SELECT * FROM EVALUACIONES ORDER BY evaluacionId asc",null);
+            Evaluacion obj;
+            while (q.moveToNext())
+            {
+                obj = new Evaluacion();
+                obj.setEvaluacionId(q.getInt(0));
+                obj.setDescripcion(q.getString(1));
+                lista.add(obj);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return lista;
     }
 
     @Override

@@ -46,6 +46,8 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(INSERTS_CURSOS);
         db.execSQL(INSERTS_CARRERAS);
         db.execSQL(INSERTS_TIPO_AULA);
+        db.execSQL(INSERTS_SECCIONES);
+        db.execSQL(INSERTS_EVALUACIONES);
 
         for (int i=2014;i<=2030;i++)
         {
@@ -386,4 +388,48 @@ public class DbHelper extends SQLiteOpenHelper {
             "(1,'TEORIA'),\n" +
             "(3,'PRÁCTICA/TALLER'),\n" +
             "(2,'LABORATORIO');";
+
+    private static final String INSERTS_SECCIONES="INSERT INTO SECCIONES VALUES\n" +
+            "(1,'T5AN'),\n" +
+            "(2,'T5BN'),\n" +
+            "(3,'T5CN'),\n" +
+            "(4,'T5DN'),\n" +
+            "(5,'D5AN'),\n" +
+            "(6,'D5BN'),\n" +
+            "(7,'D5DN'),\n" +
+            "(8,'T6AN'),\n" +
+            "(9,'T6BN'),\n" +
+            "(10,'T6CN'),\n" +
+            "(11,'C4AN'),\n" +
+            "(12,'D4AN'),\n" +
+            "(13,'D4BN'),\n" +
+            "(14,'G5AN'),\n" +
+            "(15,'G5BN'),\n" +
+            "(16,'G5CN'),\n" +
+            "(17,'G5DN');";
+
+    private static final String INSERTS_EVALUACIONES="INSERT INTO EVALUACIONES VALUES\n" +
+            "(1,'EVALUACION LABORATORIO 1'),\n" +
+            "(2,'EVALUACION LABORATORIO 2'),\n" +
+            "(3,'EVALUACION LABORATORIO 3'),\n" +
+            "(4,'NOTA ACTITUDINAL'),\n" +
+            "(5,'AVANCE TÉCNICO'),\n" +
+            "(6,'AVANCE DE DESARROLLO'),\n" +
+            "(7,'SUSTENTACIÓN PROYECTO'),\n" +
+            "(8,'EXAMEN TEORICO 1'),\n" +
+            "(9,'EXAMEN TEORICO 2'),\n" +
+            "(10,'EXAMEN TEORICO 3'),\n" +
+            "(11,'EXAMEN TEORICO 4'),\n" +
+            "(12,'EVALUACIÓN VIRTUAL'),\n" +
+            "(13,'EXAMEN FINAL'),\n" +
+            "(14,'EXAMEN FINAL DE LABORATORIO'),\n" +
+            "(15,'DESARROLLO PROGRESO EN LA PLATAFORMA'),\n" +
+            "(16,'UNIDADES VIRTUALES 1'),\n" +
+            "(17,'UNIDADES VIRTUALES 2'),\n" +
+            "(18,'UNIDADES VIRTUALES 3'),\n" +
+            "(19,'UNIDADES VIRTUALES 4');";
+
+
+
+
 }

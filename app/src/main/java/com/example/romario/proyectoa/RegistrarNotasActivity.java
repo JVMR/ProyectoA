@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import com.example.romario.proyectoa.beans.Calificacion;
 import com.example.romario.proyectoa.beans.Ciclo;
 import com.example.romario.proyectoa.beans.Curso;
+import com.example.romario.proyectoa.beans.Evaluacion;
 import com.example.romario.proyectoa.beans.ModalidadEstudio;
 import com.example.romario.proyectoa.beans.Profesor;
 import com.example.romario.proyectoa.beans.Seccion;
@@ -17,6 +18,7 @@ import com.example.romario.proyectoa.dao.Factory;
 import com.example.romario.proyectoa.dao.calificacion.CalificacionDAO;
 import com.example.romario.proyectoa.dao.ciclo.CicloDAO;
 import com.example.romario.proyectoa.dao.curso.CursoDAO;
+import com.example.romario.proyectoa.dao.evaluacion.EvaluacionDAO;
 import com.example.romario.proyectoa.dao.modalidadEstudio.ModalidadEstudioDAO;
 import com.example.romario.proyectoa.dao.profesor.ProfesorDAO;
 import com.example.romario.proyectoa.dao.seccion.SeccionDAO;
@@ -47,10 +49,10 @@ public class RegistrarNotasActivity extends Activity {
         llenarCiclos();
         llenarProfesor();
         llenarAsignatura();
-        /*llenarSeccion();
+        llenarSeccion();
         llenarTipoPrueba();
         llenarGrupo();
-        llenarNumPrueba();*/
+        llenarNumPrueba();
     }
 
 
@@ -128,10 +130,10 @@ public class RegistrarNotasActivity extends Activity {
 
     private void llenarTipoPrueba() {
         Factory factory = Factory.getFactory(Factory.TIPO_SQLITE);
-        CalificacionDAO calificacionDAO = factory.getCalificacionDAO(this);
-        ArrayList<Calificacion> lista = calificacionDAO.listar();
+        EvaluacionDAO evaluacionDAO = factory.getEvaluacionDAO(this);
+        ArrayList<Evaluacion> lista = evaluacionDAO.listar();
 
-        ArrayAdapter<Calificacion> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,lista);
+        ArrayAdapter<Evaluacion> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,lista);
         spnTipoPrueba.setAdapter(adapter);
     }
     private void llenarNumPrueba() {

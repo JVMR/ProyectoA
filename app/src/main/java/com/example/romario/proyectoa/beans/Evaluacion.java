@@ -6,6 +6,11 @@ public class Evaluacion implements Serializable {
      private int evaluacionId;
      private String descripcion;
 
+    @Override
+    public String toString() {
+        return descripcion;
+    }
+
     public int getEvaluacionId() {
         return evaluacionId;
     }
