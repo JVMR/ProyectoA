@@ -48,6 +48,9 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(INSERTS_TIPO_AULA);
         db.execSQL(INSERTS_SECCIONES);
         db.execSQL(INSERTS_EVALUACIONES);
+        db.execSQL(INSERTS_CARRERAS_CURSOS);
+        db.execSQL(INSERTS_CARGA_PROFESOR);
+        db.execSQL(INSERTS_HORARIO);
 
         for (int i=2014;i<=2030;i++)
         {
@@ -152,6 +155,11 @@ public class DbHelper extends SQLiteOpenHelper {
             "  descripcion CHAR(4) NULL\n" +
             ");";
 
+    private static final String CREATE_TABLE_CICLOS="CREATE TABLE CICLOS (\n" +
+            "\tcicloId INTEGER PRIMARY KEY  AUTOINCREMENT NOT NULL,\n" +
+            "\tdescripcion VARCHAR(7) NOT NULL UNIQUE\n" +
+            ");";
+
     private static final String CREATE_TABLE_HORARIOS=CREATE_PRAGMA+" "+"CREATE TABLE HORARIOS (\n" +
             "  horarioId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  cursoId INTEGER NOT NULL REFERENCES CURSOS(cursoId),\n" +
@@ -161,7 +169,8 @@ public class DbHelper extends SQLiteOpenHelper {
             "  horaFin CHAR(6) NOT NULL,\n" +
             "  diaId INTEGER NOT NULL REFERENCES DIAS(diaId),\n" +
             "  seccionId INTEGER NOT NULL REFERENCES SECCIONES(seccionId),\n" +
-            "  grupo CHAR(2) NOT NULL\n" +
+            "  grupo CHAR(2) NOT NULL,\n" +
+            "  cicloId INTEGER NOT NULL REFERENCES CICLOS(cicloId)\n" +
             ");";
 
     private static final String CREATE_TABLE_ALUMNOS_HORARIOS=CREATE_PRAGMA+" "+"CREATE TABLE ALUMNOS_HORARIOS (\n" +
@@ -196,10 +205,7 @@ public class DbHelper extends SQLiteOpenHelper {
             "  calificacionesId INTEGER NOT NULL REFERENCES CALIFICACIONES(calificacionesId)\n" +
             ");";
 
-    private static final String CREATE_TABLE_CICLOS="CREATE TABLE CICLOS (\n" +
-            "\tcicloId INTEGER PRIMARY KEY  AUTOINCREMENT NOT NULL,\n" +
-            "\tdescripcion VARCHAR(7) NOT NULL UNIQUE\n" +
-            ");";
+
 
     private static final String CREATE_TABLE_CARGA_DOCENTE="CREATE TABLE CARGA_DOCENTE (\n" +
             "\tcargaDocenteId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,\n" +
@@ -439,5 +445,40 @@ public class DbHelper extends SQLiteOpenHelper {
             "(7,7,7),\n" +
             "(8,7,8);";
 
+
+    private static final String INSERTS_CARGA_PROFESOR="insert into CARRERAS_CURSOS values\n" +
+            "(1,1,1,1),\n" +
+            "(2,2,1,1),\n" +
+            "(3,3,1,1),\n" +
+            "(4,4,1,1),\n" +
+            "(5,5,2,1),\n" +
+            "(6,6,2,2),\n" +
+            "(7,7,2,2),\n" +
+            "(8,1,3,2),\n" +
+            "(9,2,3,2),\n" +
+            "(10,3,3,2),\n" +
+            "(11,4,4,3),\n" +
+            "(12,5,4,3),\n" +
+            "(13,6,4,3),\n" +
+            "(14,7,4,3),\n" +
+            "(15,8,5,3  );";
+
+
+    private static final String INSERTS_HORARIO="insert into HORARIOS values\n" +
+            "(1,1,1,1,'08:23:19','10:23:19',2,3,1,2014),\n" +
+            "(2,1,2,1,'08:23:19','10:23:19',2,3,1,2014),\n" +
+            "(3,3,1,1,'18:23:19','19:23:19',2,3,1,2014),\n" +
+            "(4,4,1,1,'08:23:19','10:23:19',2,3,1,2014),\n" +
+            "(5,5,2,1,'08:23:19','10:23:19',2,3,1,2014),\n" +
+            "(6,6,2,2,'15:23:19','19:23:19',2,3,1,2014),\n" +
+            "(7,7,2,2,'14:23:19','18:23:19',2,3,1,2014),\n" +
+            "(8,1,3,2,'08:23:19','10:23:19',2,3,1,2014),\n" +
+            "(9,2,3,2,'10:23:19','18:23:19',2,3,1,2014),\n" +
+            "(10,3,3,2,'16:23:19','20:23:19',2,3,1,2014),\n" +
+            "(11,4,4,3,'08:23:19','10:23:19',2,3,1,2014),\n" +
+            "(12,5,4,3,'11:23:19','14:23:19',2,3,1,2014),\n" +
+            "(13,6,4,3,'10:23:19','12:23:19',2,3,1,2014),\n" +
+            "(14,7,4,3,'09:23:19','10:23:19',2,3,1,2014),\n" +
+            "(15,8,5,3,'08:23:19','10:23:19',2,3,1,2014);";
 
 }
