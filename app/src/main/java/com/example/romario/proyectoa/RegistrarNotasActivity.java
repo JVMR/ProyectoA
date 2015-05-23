@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.romario.proyectoa.beans.Calificacion;
 import com.example.romario.proyectoa.beans.Ciclo;
@@ -28,9 +31,14 @@ import org.apache.http.cookie.params.CookieSpecPNames;
 import java.util.ArrayList;
 
 
-public class RegistrarNotasActivity extends Activity {
+public class RegistrarNotasActivity extends Activity implements AdapterView.OnItemSelectedListener {
+
 
     Spinner spnModalidad,spnCiclo,spnProfesor,spnAsignatura,spnSeccion,spnTipoPrueba,spnGrupo,spnNumPrueba;
+    private int codigoProfesor;
+    private int codigoCurso;
+    private int codigoCiclo;
+    private int codigoSeccion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +46,18 @@ public class RegistrarNotasActivity extends Activity {
         setContentView(R.layout.activity_registrar_notas);
 
         spnModalidad=(Spinner)findViewById(R.id.spnModalidadRegistrar);
+        llenarModalidad();
+
         spnCiclo=(Spinner)findViewById(R.id.spnCiclo);
+        llenarCiclos();
+        spnCiclo.setOnItemSelectedListener(this);
+
         spnProfesor=(Spinner)findViewById(R.id.spnProfesor);
         spnAsignatura=(Spinner)findViewById(R.id.spnAsignatura);
         spnSeccion=(Spinner)findViewById(R.id.spnSeccion);
         spnGrupo=(Spinner)findViewById(R.id.spnGrupo);
         spnTipoPrueba=(Spinner)findViewById(R.id.spnTipoPrueba);
         spnNumPrueba=(Spinner)findViewById(R.id.spnNumPrueba);
-        llenarModalidad();
-        llenarCiclos();
-        llenarProfesor();
-        llenarAsignatura();
-        llenarSeccion();
-        llenarTipoPrueba();
-        llenarGrupo();
-        llenarNumPrueba();
     }
 
 
@@ -96,42 +101,46 @@ public class RegistrarNotasActivity extends Activity {
         spnCiclo.setAdapter(adapter);
     }
 
-    private void llenarProfesor() {
+    private void llenarProfesor(int idCiclo) {
         Factory factory = Factory.getFactory(Factory.TIPO_SQLITE);
         ProfesorDAO profesorDAO = factory.getProfesorDAO(this);
-        ArrayList<Profesor> lista = profesorDAO.listar();
+        ArrayList<Profesor> lista = profesorDAO.listarXciclo(idCiclo);
 
         ArrayAdapter<Profesor> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,lista);
         spnProfesor.setAdapter(adapter);
     }
 
-    private void llenarAsignatura() {
+    private void llenarAsignatura(int idProfesor,int idCiclo) {
         Factory factory = Factory.getFactory(Factory.TIPO_SQLITE);
         CursoDAO cursoDAO = factory.getCursoDAO(this);
-        ArrayList<Curso> lista = cursoDAO.listar();
+        ArrayList<Curso> lista = cursoDAO.listarXprofesor(idProfesor,idCiclo);
 
         ArrayAdapter<Curso> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,lista);
         spnAsignatura.setAdapter(adapter);
     }
 
-    private void llenarSeccion() {
+    private void llenarSeccion(int idCiclo,int idProfesor,int idCurso) {
         Factory factory = Factory.getFactory(Factory.TIPO_SQLITE);
         SeccionDAO seccionDAO = factory.getSeccionDAO(this);
-        ArrayList<Seccion> lista = seccionDAO.listar();
+        ArrayList<Seccion> lista = seccionDAO.listarxCiclo_Profesor_Curso(idCiclo,idProfesor,idCurso);
 
         ArrayAdapter<Seccion> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,lista);
         spnSeccion.setAdapter(adapter);
     }
 
-    private void llenarGrupo() {
-        ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,new String[]{"Seleccione","1","2"});
-        spnGrupo.setAdapter(myAdapter);
+    private void llenarGrupo(int idCiclo,int idProfesor,int idCurso,int idSeccion) {
+        Factory factory = Factory.getFactory(Factory.TIPO_SQLITE);
+        SeccionDAO seccionDAO = factory.getSeccionDAO(this);
+        ArrayList<Integer> lista = seccionDAO.listarGruposxCiclo_Profesor_Curso(idCiclo,idProfesor,idCurso,idSeccion);
+
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,lista);
+        spnSeccion.setAdapter(adapter);
     }
 
-    private void llenarTipoPrueba() {
+    private void llenarTipoPrueba(int idCurso) {
         Factory factory = Factory.getFactory(Factory.TIPO_SQLITE);
         EvaluacionDAO evaluacionDAO = factory.getEvaluacionDAO(this);
-        ArrayList<Evaluacion> lista = evaluacionDAO.listar();
+        ArrayList<Evaluacion> lista = evaluacionDAO.listarXCurso(idCurso);
 
         ArrayAdapter<Evaluacion> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,lista);
         spnTipoPrueba.setAdapter(adapter);
@@ -141,4 +150,34 @@ public class RegistrarNotasActivity extends Activity {
         ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,new String[]{"Seleccione","1","2","3","4"});
         spnNumPrueba.setAdapter(myAdapter);
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if(adapterView==spnCiclo){
+            codigoCiclo=1+1;
+            llenarProfesor(codigoCiclo);
+            Toast.makeText(this,"int "+i,Toast.LENGTH_LONG).show();
+        }
+        if(adapterView==spnProfesor){
+            codigoProfesor=i+1;
+            llenarAsignatura(codigoProfesor,codigoCiclo);
+        }
+        if(adapterView==spnAsignatura){
+            codigoCurso=i+1;
+            llenarSeccion(codigoCiclo,codigoProfesor,codigoCurso);
+            llenarTipoPrueba(codigoCurso);
+            llenarNumPrueba();
+        }
+        if(adapterView==spnSeccion){
+            codigoSeccion=i+1;
+            llenarGrupo(codigoCiclo,codigoProfesor,codigoCurso,codigoSeccion);
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
 }

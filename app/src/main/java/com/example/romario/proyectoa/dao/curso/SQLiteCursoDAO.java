@@ -45,6 +45,28 @@ public class SQLiteCursoDAO implements CursoDAO {
         return lista;
     }
 
+
+    public ArrayList<Curso> listarXprofesor(int profesorId,int cicloId) {
+        ArrayList<Curso> lista = new ArrayList<>();
+        try {
+            DbHelper helper = new DbHelper(context);
+            SQLiteDatabase database = helper.getReadableDatabase();
+            Cursor q = database.rawQuery("SELECT c.cursoId,c.codigo,c.descripcion FROM CURSOS c inner join CARGA_DOCENTE ca on c.cursoId=ca.cursoId where ca.profesorId="+profesorId+" and ca.cicloId="+cicloId+" ORDER BY c.cursoId asc",null);
+            Curso obj;
+            while (q.moveToNext())
+            {
+                obj = new Curso();
+                obj.setCursoId(q.getInt(0));
+                obj.setCodigo(q.getString(1));
+                obj.setDescripcion(q.getString(2));
+                lista.add(obj);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return lista;
+    }
     @Override
     public Curso buscar(int id) {
         return null;

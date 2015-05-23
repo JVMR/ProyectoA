@@ -46,6 +46,32 @@ public class SQLiteProfesorDAO implements ProfesorDAO {
         return lista;
     }
 
+
+    public ArrayList<Profesor> listarXciclo(int cicloId) {
+        ArrayList<Profesor> lista = new ArrayList<>();
+        try {
+            DbHelper helper = new DbHelper(context);
+            SQLiteDatabase database = helper.getReadableDatabase();
+            Cursor q = database.rawQuery("select p.profesorId,p.nombres,p.apellidoPaterno,p.apellidoMaterno,p.email,p.username from PROFESORES p inner join CARGA_DOCENTE c on p.profesorId=c.profesorId where c.cicloId="+cicloId+" ORDER BY p.profesorId asc;",null);
+            Profesor obj;
+            while (q.moveToNext())
+            {
+                obj = new Profesor();
+                obj.setProfesorId(q.getInt(0));
+                obj.setNombres(q.getString(1));
+                obj.setApellidoPaterno(q.getString(2));
+                obj.setApellidoMaterno(q.getString(3));
+                obj.setEmail(q.getString(4));
+                obj.setUsername(q.getString(5));
+                lista.add(obj);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
     @Override
     public Profesor buscar(int id) {
         return null;
