@@ -12,7 +12,7 @@ public class Ciclo implements Serializable {
     @Override
     public String toString()
     {
-        return cicloId+" "+ descripcion;
+        return descripcion;
     }
 
 

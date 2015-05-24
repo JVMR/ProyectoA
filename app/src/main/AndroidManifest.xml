@@ -15,7 +15,11 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".OpcionesActivity"
@@ -32,13 +36,6 @@
         <activity
             android:name=".RegistrarNotasActivity"
             android:label="@string/title_activity_registrar_notas" >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
     </application>
 

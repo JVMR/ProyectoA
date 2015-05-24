@@ -49,7 +49,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(INSERTS_SECCIONES);
         db.execSQL(INSERTS_EVALUACIONES);
         db.execSQL(INSERTS_CARRERAS_CURSOS);
-        db.execSQL(INSERTS_CARGA_PROFESOR);
+        db.execSQL(INSERTS_CARGA_DOCENTE);
         db.execSQL(INSERTS_HORARIO);
 
         for (int i=2014;i<=2030;i++)
@@ -118,14 +118,14 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_CARRERAS="CREATE TABLE CARRERAS (\n" +
             "  carreraId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
-            "  descripcion VARCHAR(45) NOT NULL UNIQUE\n" +
+            "  descripcion VARCHAR(45) NOT NULL UNIQUE,\n" +
             "  modalidadEstudioId INTEGER NOT NULL REFERENCES MODALIDADES_ESTUDIOS(modalidadEstudioId)\n" +
             ");";
 
     private static final String CREATE_TABLE_CURSOS=CREATE_PRAGMA+" "+"CREATE TABLE CURSOS (\n" +
             "  cursoId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n" +
             "  codigo CHAR(4) NOT NULL,\n" +
-            "  descripcion VARCHAR(45) NOT NULL UNIQUE,\n" +
+            "  descripcion VARCHAR(45) NOT NULL UNIQUE\n" +
             ");";
 
     private static final String CREATE_TABLE_CARRERAS_CURSOS=CREATE_PRAGMA+" "+"CREATE TABLE CARRERAS_CURSOS (\n" +
@@ -367,7 +367,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final String INSERTS_CURSOS="insert into CURSOS values\n" +
             "(1,'0267','Base de Datos Avanzado ii'),\n" +
-            "(2,'0557','Desarrollo de Aplicaciones Móviles i'),\n" +
+            "(2,'0557','Desarrollo de Aplicaciones Móviles I'),\n" +
             "(3,'0778','Desarrollo para Entorno Web'),\n" +
             "(4,'0772','Fundamentos de Calidad de Software'),\n" +
             "(5,'1352','Inglés Profesional I'),\n" +
@@ -436,17 +436,17 @@ public class DbHelper extends SQLiteOpenHelper {
             "(19,'UNIDADES VIRTUALES 4');";
 
     private static final String INSERTS_CARRERAS_CURSOS="insert into CARRERAS_CURSOS values\n" +
-            "(1,7,1),\n" +
-            "(2,7,2),\n" +
-            "(3,7,3),\n" +
-            "(4,7,4),\n" +
-            "(5,7,5),\n" +
-            "(6,7,6),\n" +
-            "(7,7,7),\n" +
-            "(8,7,8);";
+            "(1,7,1,5),\n" +
+            "(2,7,2,5),\n" +
+            "(3,7,3,5),\n" +
+            "(4,7,4,5),\n" +
+            "(5,7,5,5),\n" +
+            "(6,7,6,5),\n" +
+            "(7,7,7,5),\n" +
+            "(8,7,8,5);";
 
 
-    private static final String INSERTS_CARGA_PROFESOR="insert into CARRERAS_CURSOS values\n" +
+    private static final String INSERTS_CARGA_DOCENTE="insert into CARGA_DOCENTE values\n" +
             "(1,1,1,1),\n" +
             "(2,2,1,1),\n" +
             "(3,3,1,1),\n" +
@@ -461,7 +461,7 @@ public class DbHelper extends SQLiteOpenHelper {
             "(12,5,4,3),\n" +
             "(13,6,4,3),\n" +
             "(14,7,4,3),\n" +
-            "(15,8,5,3  );";
+            "(15,8,5,3);";
 
 
     private static final String INSERTS_HORARIO="insert into HORARIOS values\n" +
